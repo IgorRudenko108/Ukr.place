@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="main-lastitems">
+        <!-- latest-news -->
+        <div class="main-archive-lastitems">
+            <h3><img src="/assets/img/lastnews.svg" alt=""><?=$page_title?></h3>
+            <span class="main-lastitems-newslist-subtitle"><?=$description_seo?></span>
+            <?php if(count($errors) < 1): ?>
+            <?php foreach ($news as $item): ?>
+            <a href="/news/<?=$item['id']?>" data-last-id="<?=$item['id']?>">
+                <?php if(empty($item['img'])): ?>
+                <img src="/assets/img/no-image.jpg" alt="">
+                <?php else: ?>
+                <img src="<?=$item['img']?>" alt="">
+                <?php endif ?>
+                <div>
+                    <span><?=get_pub_date($item['created_at'])?></span>
+                    <?=$item['title']?>
+                </div>
+            </a>
+            <?php endforeach ?>
+            <?php else: ?>
+            <?php foreach($errors as $err): ?>
+            <p class="error_item"><?=$err?></p>
+            <?php endforeach ?>
+            <?php endif ?>
+        </div>
+        <!-- end latest-news -->
+    </div>
+</div>

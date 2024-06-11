@@ -1,0 +1,15 @@
+<ul class="category_pagination">
+    <F3:check if="{{@pg.firstPage}}"></F3:check>
+        <li><a href="{{@BASE.@pg.route.@pg.prefix.@pg.firstPage}}">1</a></li>
+    </F3:check>
+    <F3:check if="{{@pg.prevPage}}">
+        <li><a href="{{@BASE.@pg.route.@pg.prefix.@pg.prevPage}}">&larr;</a></li>
+    </F3:check>
+    <F3:repeat group="{{@pg.rangePages}}" value="{{@page}}">
+        <li class="page-item {{@page == @pg.currentPage ? 'category_pagination_active':'' }}"><a href="{{@BASE.@pg.route.@pg.prefix.@page}}">{{@page}}</a></li>
+    </F3:repeat>
+    <F3:check if="{{@pg.nextPage}}">
+        <li><a href="{{@BASE.@pg.route.@pg.prefix.@pg.nextPage}}">&rarr;</a></li>
+    </F3:check>
+</ul>
+<center><br>Сторінка <b>{{ @pg.currentPage }}</b> з <b>{{ @pg.allPages }}</b></center>

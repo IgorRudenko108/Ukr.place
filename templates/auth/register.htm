@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Реестрація</h1>
+<form method="POST">
+    <table>
+        <tr>
+            <td>Прізвище:</td>
+            <td><input type="text" name="surname" placeholder="Прізвище"></td>
+        </tr>
+        <tr>
+            <td>Ім'я:</td>
+            <td><input type="text" name="name" placeholder="Ім'я"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="email" placeholder="Email"></td>
+        </tr>
+        <tr>
+            <td>Придумайте пароль:</td>
+            <td><input type="password" name="password" placeholder="Пароль"></td>
+        </tr>
+        <tr>
+            <td>Повторіть пароль</td>
+            <td><input type="password" name="password_repeat" placeholder="Пароль знову"></td>
+        </tr>
+    </table>
+    <!-- Тут має бути рекапча -->
+    <?php if(isset($errors)): ?>
+    <ul>
+        <?php foreach($errors as $err): ?>
+            <li><?=$err;?></li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+    <input type="submit" value="Зарееструватись">
+</form>
+</body>
+</html>

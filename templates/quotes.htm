@@ -1,0 +1,438 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <title><?=$page_title?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/framework7-icons.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+</head>
+    <a class="main-goback" id="goBack" title="Повернутися назад">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <!-- end navbar -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="quotes-container">
+        <h3>Валюти</h3>
+
+        <div class="slider-quotes">
+            <div class="slider-quotes-slide bg-dollar">
+                <div class="quotes-curr-title">
+                    USD / UAH
+                </div>
+                <div class="quotes-curr-values-buy">
+                    <span>Купівля</span> 37.65 грн
+                    <span class="quotes-curr-diff-low">
+                        -0.069%
+                    </span>
+                    <div class="quotes-curr-values-buy-ex">
+                        <input type="text" placeholder="100">
+                        <span>=</span>
+                        <span class="curr-ex-result">3765</span>
+                    </div>
+                </div>
+                <div class="quotes-curr-values-sale">
+                    <span>Продаж</span> 37.85 грн
+                    <span class="quotes-curr-diff-high">
+                        +0.028%
+                    </span>
+                    <div class="quotes-curr-values-buy-ex">
+                        <input type="text" placeholder="100">
+                        <span>=</span>
+                        <span class="curr-ex-result">3785</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-quotes-slide bg-euro">
+                <div class="quotes-curr-title">
+                    EUR / UAH
+                </div>
+                <div class="quotes-curr-values-buy">
+                    <span>Купівля</span> 40.05 грн
+                    <span class="quotes-curr-diff-low">
+                        -0.19%
+                    </span>
+                    <div class="quotes-curr-values-buy-ex">
+                        <input type="text" placeholder="100">
+                        <span>=</span>
+                        <span class="curr-ex-result">4005</span>
+                    </div>
+                </div>
+                <div class="quotes-curr-values-sale">
+                    <span>Продаж</span> 41.18 грн
+                    <span class="quotes-curr-diff-high">
+                        +0.098%
+                    </span>
+                    <div class="quotes-curr-values-buy-ex">
+                        <input type="text" placeholder="100">
+                        <span>=</span>
+                        <span class="curr-ex-result">4118</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-quotes-slide bg-pln">
+                <div class="quotes-curr-title">
+                    PLN / UAH
+                </div>
+                <div class="quotes-curr-values-buy">
+                    <span>Купівля</span> 7.39 грн
+                    <span class="quotes-curr-diff-low">
+                        -0.029%
+                    </span>
+                    <div class="quotes-curr-values-buy-ex">
+                        <input type="text" placeholder="100">
+                        <span>=</span>
+                        <span class="curr-ex-result">739</span>
+                    </div>
+                </div>
+                <div class="quotes-curr-values-sale">
+                    <span>Продаж</span> 8.45 грн
+                    <span class="quotes-curr-diff-high">
+                        +0.038%
+                    </span>
+                    <div class="quotes-curr-values-buy-ex">
+                        <input type="text" placeholder="100">
+                        <span>=</span>
+                        <span class="curr-ex-result">845</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Крипта</h3>
+
+        <div class="slider-crypto">
+            <div class="slider-crypto-slide">
+                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="">
+                <div class="quotes-crypto-title">
+                    Bitcoin
+                    <span>BTC</span>
+                </div>
+                <div class="quotes-crypto-value-high">
+                    $27,458.65 
+                    <span>+0.79%</span>
+                </div>
+            </div>
+
+            <div class="slider-crypto-slide">
+                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="">
+                <div class="quotes-crypto-title">
+                    Ethereum
+                    <span>ETH</span>
+                </div>
+                <div class="quotes-crypto-value-low">
+                    $1,839.29 
+                    <span>-0.29%</span>
+                </div>
+            </div>
+
+            <div class="slider-crypto-slide">
+                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" alt="">
+                <div class="quotes-crypto-title">
+                    Tether
+                    <span>USDT</span>
+                </div>
+                <div class="quotes-crypto-value-high">
+                    $1.00
+                    <span>+1.92%</span>
+                </div>
+            </div>
+
+            <div class="slider-crypto-slide">
+                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="">
+                <div class="quotes-crypto-title">
+                    Bitcoin
+                    <span>BTC</span>
+                </div>
+                <div class="quotes-crypto-value-high">
+                    $27,458.65 
+                    <span>+0.79%</span>
+                </div>
+            </div>
+
+            <div class="slider-crypto-slide">
+                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="">
+                <div class="quotes-crypto-title">
+                    Bitcoin
+                    <span>BTC</span>
+                </div>
+                <div class="quotes-crypto-value-high">
+                    $27,458.65 
+                    <span>+0.79%</span>
+                </div>
+            </div>
+
+            <div class="slider-crypto-slide">
+                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="">
+                <div class="quotes-crypto-title">
+                    Bitcoin
+                    <span>BTC</span>
+                </div>
+                <div class="quotes-crypto-value-high">
+                    $27,458.65 
+                    <span>+0.79%</span>
+                </div>
+            </div>
+        </div>
+
+        <h3>Пальне</h3>
+
+        <div class="quotes-fuel">
+            <div class="quotes-fuel-row quotes-fuel-header">
+                <div class="quotes-fuel-name quotes-fuel-title">
+                    АЗС
+                </div>
+                <div class="quotes-fuel-value quotes-fuel-title">
+                    А-95+
+                </div>
+                <div class="quotes-fuel-value quotes-fuel-title">
+                    А-95
+                </div>
+                <div class="quotes-fuel-value quotes-fuel-title">
+                    А-92
+                </div>
+                <div class="quotes-fuel-value quotes-fuel-title">
+                    А-95 Premium (спиртовий)
+                </div>
+                <div class="quotes-fuel-value quotes-fuel-title">
+                    ДП
+                </div>
+                <div class="quotes-fuel-value quotes-fuel-title">
+                    Газ пропан
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    ОККО
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    WOG
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    Socar
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    БРСМ
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    БАРС
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    Авіас
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    Укрнафта
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+            <div class="quotes-fuel-row">
+                <div class="quotes-fuel-name">
+                    Автотранс
+                </div>
+                <div class="quotes-fuel-value">
+                    49.99
+                </div>
+                <div class="quotes-fuel-value">
+                    47.99
+                </div>
+                <div class="quotes-fuel-value">
+                    46.00
+                </div>
+                <div class="quotes-fuel-value">
+                    46.50
+                </div>
+                <div class="quotes-fuel-value">
+                    39.99
+                </div>
+                <div class="quotes-fuel-value">
+                    23.48
+                </div>
+            </div>
+        </div>
+    </div>
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- script -->
+<script>
+    $("#goBack").click(function() {
+        history.back();
+    });
+</script>   
+<!-- end script -->

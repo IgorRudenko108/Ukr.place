@@ -1,0 +1,140 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <?php if(isset($_SESSION["err"])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?=$_SESSION["err"];?>
+                        <?php unset($_SESSION["err"]); ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Назва</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input required 
+                                    type="text"
+                                    placeholder="Назва партнера"
+                                    class="form-control p-0 border-0"
+                                    name="name"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Url</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input required
+                                    type="text"
+                                    placeholder="Url"
+                                    class="form-control p-0 border-0"
+                                    name="url"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Регіональне видання</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select name="region" class="form-select">
+                                        <option value="0" selected>Ні</option>
+                                        <?php foreach($regions as $key => $region): ?>
+                                        <option value="<?=$key?>"><?=$region['name']?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Категорія видання</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select name="only_category" class="form-select">
+                                        <option value="0" selected>Немає</option>
+                                        <option disabled>_</option>
+                                        <?php foreach($categories as $category): ?>
+                                        <option value="<?=$category['id'];?>"><?=$category['name']?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Ціна за клік</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input
+                                    type="text"
+                                    placeholder="Ціна за клік"
+                                    class="form-control p-0 border-0"
+                                    name="click_price"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Статус</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select name="active" class="form-select">
+                                        <option value="0" selected>Не показувати</option>
+                                        <option value="1">Показувати</option>
+                                        <option value="2">Показувати платно</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Пріоритет показу</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <small class="bg-light p-1">Пріоритет показу новин, від 1 до 5</small>
+                                    <select name="priority" class="form-select mt-2">
+                                        <option value="0" selected>Без пріоритету</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Денний ліміт</label>
+                                <small class="bg-light p-1">0 - без обмеження</small>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input
+                                    type="number"
+                                    placeholder="0"
+                                    class="form-control p-0 border-0"
+                                    name="day_limit"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Місячний ліміт</label>
+                                <small class="bg-light p-1">0 - без обмеження</small>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input
+                                    type="number"
+                                    placeholder="0"
+                                    class="form-control p-0 border-0"
+                                    name="month_limit"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Лого</label>
+                                <small class="bg-light p-1">JPG або PNG</small>
+                                <div class="custom-file mt-2">
+                                  <input type="file" class="form-control-file" id="customFile" name="logo">
+                                </div>
+                            </div>
+                            <?php if(isset($errors)): ?>
+                                <ul style="color:red;">
+                                    <?php foreach($errors as $err): ?>
+                                        <li><?=$err;?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success"><i class="fas fa-plus"></i> Додати партнера</button>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+<div class="container">
+    <h3 class="personal-title"><img src="/assets/img/choice.png" alt=""><?=$page_title?></h3>
+    <div class="personal-desc">
+        <?=$description_seo?>
+    </div>
+    <div class="main-lastitems">
+        <!-- latest-news -->
+        <div class="main-archive-lastitems">
+            <div class="personal-btn-action">
+                <div>
+                    <h3>Полтава</h3>
+                    <span class="personal-lastitems-newslist-subtitle">Новини регіону</span>
+                </div>
+                <a href="#" title="Видалити цей блок з персональної стрічки"><img src="/assets/img/remove.png" class="personal-btn-icon">Видалити</a>
+            </div>
+            <?php foreach ($news['last'] as $item): ?>
+            <a href="/news/<?=$item['id']?>" data-last-id="<?=$item['id']?>">
+                <?php if(empty($item['img'])): ?>
+                <img src="/assets/img/no-image.jpg" alt="">
+                <?php else: ?>
+                <img src="<?=$item['img']?>" alt="">
+                <?php endif ?>
+                <div>
+                    <span><?=date('H:i', strtotime($item['created_at']))?></span>
+                    <?=$item['title']?>
+                </div>
+            </a>
+            <?php endforeach ?>
+            <a href="#" class="main-lastitems-newslist-more load-more-news"><i class="fa fa-arrow-right "></i>Полтава: всі новини регіону</a>
+        </div>
+        <!-- end latest-news -->
+    </div>
+</div>

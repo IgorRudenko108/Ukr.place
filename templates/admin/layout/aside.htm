@@ -1,0 +1,105 @@
+<aside class="left-sidebar" data-sidebarbg="skin6">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+       <!-- Sidebar navigation-->
+       <nav class="sidebar-nav">
+          <ul id="sidebarnav">
+             <!-- User Profile-->
+             <li class="sidebar-item pt-2">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin"
+                   aria-expanded="false"
+                   >
+                <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                <span class="hide-menu">Головна</span>
+                </a>
+             </li>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/news"
+                   aria-expanded="false"
+                   >
+                <i class="fas fa-newspaper"></i>
+                <span class="hide-menu">Новини</span>
+                </a>
+             </li>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/categories"
+                   aria-expanded="false"
+                   >
+                <i class="fas fa-list" aria-hidden="true"></i>
+                <span class="hide-menu">Категорії</span>
+                </a>
+             </li>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/collections"
+                   aria-expanded="false"
+                   >
+                <i class="fas fa-clipboard-list"></i>
+                <span class="hide-menu">Підбірки</span>
+                </a>
+             </li>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/telegram-channels"
+                   aria-expanded="false"
+                   >
+                <i class="fab fa-telegram-plane"></i>
+                <span class="hide-menu">Telegram канали</span>
+                </a>
+             </li>
+             <li class="sidebar-item">
+                <a
+                        class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="/admin/telegram-posts"
+                        aria-expanded="false"
+                >
+                   <i class="fab fa-telegram"></i>
+                   <span class="hide-menu">Telegram пости</span>
+                </a>
+             </li>
+             <?php if($_SESSION["type"] == 1): ?>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/users"
+                   aria-expanded="false"
+                   >
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span class="hide-menu">Користувачі</span>
+                </a>
+             </li>
+             <?php endif; ?>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/partners"
+                   aria-expanded="false"
+                   >
+                <i class="fas fa-rss"></i>
+                <span class="hide-menu">Партнери</span>
+                </a>
+             </li>
+             <li class="sidebar-item">
+                <a
+                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                   href="/admin/pages"
+                   aria-expanded="false"
+                   >
+                <i class="fas fa-file-alt" aria-hidden="true"></i>
+                <span class="hide-menu">Сторінки</span>
+                </a>
+             </li>
+          </ul>
+       </nav>
+       <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+ </aside>

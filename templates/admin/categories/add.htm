@@ -1,0 +1,51 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+        <div class="col-lg-12 col-xlg-12 col-md-12">
+            <?php if(isset($_SESSION["err"])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?=$_SESSION["err"];?>
+                <?php unset($_SESSION["err"]); ?>
+            </div>
+            <?php endif; ?>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Назва категорії<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder=""
+                                   class="form-control p-0 border-0"
+                                   name="name"
+                            />
+                        </div>
+                    </div>
+                    <!--<div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Alias</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input type="text"
+                                   placeholder=""
+                                   class="form-control p-0 border-0"
+                                   name="alias"
+                            />
+                        </div>
+                    </div>-->
+
+                    <?php if(isset($errors)): ?>
+                    <ul style="color:red;">
+                        <?php foreach($errors as $err): ?>
+                        <li><?=$err;?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+                    <div class="form-group mb-4">
+                        <div class="col-sm-12">
+                            <button class="btn btn-success"><i class="fas fa-plus"></i> Додати категорію</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</form>

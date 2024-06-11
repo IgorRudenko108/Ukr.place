@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="main-top">
+        <div class="main-top-img">
+            <h1><?=$page_title?></h1>
+            <div class="main-top-img-wrapper">
+                <?php foreach ($news['last_top'] as $item): ?>
+                <a href="/news/<?=$item['id']?>" class="main-topnews-img-slide">
+                    <div class="main-topnews-img">
+                        <?php if(empty($item['img'])): ?>
+                        <img src="/assets/img/no-image.jpg" alt="">
+                        <?php else: ?>
+                        <img src="<?=$item['img']?>" alt="">
+                        <?php endif ?>
+                    </div>
+                    <div class="main-topnews-info">
+                        <span class="category-tag"><?=$categories[$item['category_id']]['name']?></span>
+                        <h4><?=$item['title']?></h4>
+                        <span class="main-topnews-info-date"><?=get_pub_date($item['created_at'])?> &bull; <?=$item['source_name']?></span>
+                    </div>
+                </a>
+                <?php endforeach ?>
+            </div>
+        </div>
+        <div class="main-top-more">
+            <h2 style="margin-bottom: 13px">
+                Головні новини
+            </h2>
+            <div class="main-more-news-list">
+                <?php foreach ($news['top'] as $item): ?>
+                <a href="/news/<?=$item['id']?>">
+                    <div class="main-more-news-list-title">
+                        <?=$item['title']?> <i>&bull; <?=$item['source_name']?></i>
+                    </div>
+                    <span><?=get_pub_date($item['created_at'])?></span>
+                </a>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-lastitems">
+        <!-- latest-news -->
+        <div class="main-lastitems-newslist">
+            <h3><img src="/assets/img/lastnews.svg" alt="">Всі новини</h3>
+            <span class="main-lastitems-newslist-subtitle"><?=$description_seo?></span>
+            <?php foreach ($news['last'] as $item): ?>
+            <a href="/news/<?=$item['id']?>" data-last-id="<?=$item['id']?>">
+                <div class="main-lastnews-img">
+                    <?php if(empty($item['img'])): ?>
+                    <img src="/assets/img/no-image.jpg" alt="">
+                    <?php else: ?>
+                    <img src="<?=$item['img']?>" alt="">
+                    <?php endif ?>
+                </div>
+                <span><?=date('H:i', strtotime($item['created_at']))?></span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        <?=$item['title']?>
+                        <span class="newslist-cat">&bull; <?=$item['source_name']?></span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            <?=get_pub_date($item['created_at'])?>
+                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            <?=$categories[$item['category_id']]['name']?>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach ?>
+            <button <?=(count($news['last']) < 25) ? 'disabled' : ''?> href="#" class="main-lastitems-newslist-more load-more-news"><i class="fas fa-plus"></i>Показати ще</button>
+        </div>
+        <!-- end latest-news -->
+    </div>
+</div>

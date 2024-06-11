@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <title><?=$page_title?></title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;900&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/framework7-icons.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <script src="https://code.jquery.com/color/jquery.color-2.2.0.min.js" integrity="sha256-aSe2ZC5QeunlL/w/7PsVKmV+fa0eDbmybn/ptsKHR6I=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="toolbar-bottom-wrapper">
+        <div class="toolbar-bottom container">
+            <a href="/" class="<?=($_SERVER['REQUEST_URI'] === '/') ? "active" : "" ?> " title="Головні події в Україні">
+                <img src="/assets/img/menu-home.svg" alt="">
+                <span class="tabbar-label">Головне</span>
+            </a>
+            <a href="/personal/" class="<?=($_SERVER['REQUEST_URI'] === '/personal') ? "active" : "" ?> " title="Персональна стрічка за вашими вподобаннями">
+                <img src="/assets/img/menu-personal.svg" alt="">
+                <span class="tabbar-label">Моя стрічка</span>
+            </a>
+            <a href="#search" class="search-btn <?=($_SERVER['REQUEST_URI'] === '/search') ? "active" : "" ?> ">
+                <img src="/assets/img/menu-search.svg" alt="" title="Пошук новин">
+                <span class="tabbar-label">Пошук</span>
+            </a>
+            <a href="/archive/" class="<?=($_SERVER['REQUEST_URI'] === '/archive') ? "active" : "" ?> ">
+                <img src="/assets/img/menu-archive.svg" alt="" title="Архів новин, які ви переглянули">
+                <span class="tabbar-label">Архів</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- navbar home -->
+    <div class="navbar">
+        <div class="navbar-top container">
+            <a href="/"><img src="/assets/img/logo2.svg" alt=""></a>
+            <div class="main-navbar-weather">
+                <i class="fas fa-map-marker-alt"></i>
+                <a href="#" class="select-region-btn" title="Обрати інше місто"><?=$regions[$region]["name"];?></a> 
+                <img src="/assets/img/<?=$weather["icon"]["icon"];?>.svg" title="<?=$weather["weather"]["status"];?> - <?=$weather["weather"]["description"];?>">
+                <?=$weather["weather"]["temp"];?>°C
+            </div>
+            <div class="main-navbar-courses">
+                <div>
+                    <img src="/assets/img/dollar.svg">
+                    <span><?=$exchange_rate["USD"];?></span><i class="fas fa-caret-down" style="color: #F08080"></i>
+                </div>
+                <div>
+                    <img src="/assets/img/euro.svg">
+                    <span><?=$exchange_rate["EUR"];?></span><i class="fas fa-caret-up" style="color: #2E8B57"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subnavbar">
+        <a href="#" id="cats-open"><img src="/assets/img/burger-menu.svg" alt=""> категорії</a>
+        <div class="subnavbar_inner container">
+            <a href="#" id="cats-close"><img src="/assets/img/burger-menu-close.svg" alt=""></a>
+            <?php foreach($categories as $cat): ?>
+            <a href="/category/<?=$cat['alias']?>" class="<?=(isset($is_category) AND $is_category === $cat['alias']) ? 'subnavbar_active' : ''?>"><?=$cat['name']?></a>
+            <?php endforeach ?>
+            <a href="#" id="dropdown_menu">Регіони <span id="reg_arrow">&#10095;</span></a>
+            <div id="dropdown_content" class="dropdown-content">
+                <?php foreach($regions as $key_reg => $reg_data): ?>
+                <a href="/region/<?=$key_reg?>"><?=$reg_data["name"]?></a>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+    <!-- end navbar home -->
+
+    <?php include('templates/' . $content); ?>
+
+    <div class="region-modal modal">
+        <form method="POST" action="/set-region">
+            <div class="select-box">
+                <label for="select-box1" class="label select-box1"><span class="label-desc"><?=$regions[$region]["name"];?></span> </label>
+                <select id="select-box1" class="select" name="regionID">
+                    <?php foreach($regions as $key => $r): ?>
+                        <option value="<?=$key;?>" <?php if($key == $region): ?> selected <?php endif;?> ><?=$r["name"];?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button href="#" class="main-lastitems-newslist-more">Зберегти</button>
+            </div>
+        </form>
+        <script>
+            $("#select-box1").on("click" , function() {
+                $(this).parent(".select-box").toggleClass("open");
+            });
+            $("#select-box1").on("change" , function() {
+                var selection = $(this).find("option:selected").text(),
+                    labelFor = $(this).attr("id"),
+                    label = $("[for='" + labelFor + "']");
+                label.find(".label-desc").html(selection);
+            });
+        </script>
+    </div>
+
+    <div class="search-modal modal">
+        <form method="POST" action="/search">
+            <input type="text" name="s_query" placeholder="Введіть, що шукаєте...">
+            <button type="submit" class="main-lastitems-newslist-more">Шукати</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.search-btn').click(function(event) {
+                event.preventDefault();
+                this.blur(); // Manually remove focus from clicked link.
+                $("div.search-modal").modal({fadeDuration: 300});
+            });
+
+            $('.select-region-btn').click(function(event) {
+                event.preventDefault();
+                this.blur(); // Manually remove focus from clicked link.
+                $("div.region-modal").modal({fadeDuration: 300});
+            });
+
+            $(".close-select-region").click(function(){
+                $(this).parent().parent().toggleClass('active');
+            });
+
+            const links = $("a");
+            $(links).click(function(e){
+                e.preventDefault();
+                let top = $("#tab-home").scrollTop();
+                sessionStorage.setItem('scroll', top);
+                window.location.href = $(this).attr("href");
+            })
+
+            if (sessionStorage.getItem('scroll')) {
+                let scrollTop = sessionStorage.getItem('scroll');
+                $("#tab-home").scrollTop(scrollTop);
+                sessionStorage.removeItem('scroll');
+            }
+
+            /* Load more button */
+            $("button.load-more-news").click(function(){
+
+                var isCollection = false;
+
+                var defBtn = '<i class="fas fa-plus"></i> Показати ще';
+                $(this).prop('disabled', true);
+                $(this).html('<img src="/assets/img/spinner.svg">&nbsp; Завантажую...');
+                let lastid = $(this).prev().data('last-id');
+                var req = { lastid: lastid }
+                if($(this).hasClass('load-more-collection'))
+                {
+                    isCollection = true;
+                    let collection = $(this).data('collectionid');
+                    var req = { lastid: lastid, collection: collection }
+                }
+                let me = this;
+
+                $.get( "/news/load", req )
+                  .done(function( news ) {
+                    $(news).each(function(index, item){
+                        var elem = '<a style="display:none;" href="/news/'+item.id+'" data-last-id="'+item.id+'"><span>'+item.time+'</span><div>'+item.title+'<span class="newslist-cat">'+item.category_name+'</span></div></a>';
+                        if(isCollection)
+                        {
+                            elem = '<a style="display:none;" href="/news/'+item.id+'" data-last-id="'+item.id+'"><img src="'+item.img+'" alt=""><div><span>'+item.time+'</span>'+item.title+'</div></a>';
+                        }
+                        let added = $(elem).insertBefore($(me));
+                        $(added).slideDown(300);
+                    });
+
+                    $(me).html(defBtn);
+                    $(me).prop('disabled', false);
+                  });
+            });
+
+            $("#justGood").change(function(){
+                let checked = $(this).is(':checked');
+
+                $.post( "/set-just-good", { justgood: checked } )
+                    .done(function( resp ) {
+                        setTimeout(function(){
+                            window.location.href = '/';
+                        }, 300);
+                    });
+            });
+
+            var old = [];
+
+            $(document).on('click', '.loadTgPost', function() {
+                var postID = $(this).data('id');
+                var block = $(this).parents('div.tg-text');
+                var avatar = $(block).prev();
+
+                let old_elem = {
+                    avatar: avatar,
+                    elem: block,
+                    html: $(block).html()
+                };
+
+                $.get( "/load-telegram-post", { id: postID } )
+                    .done(function( resp ) {
+                        $(block).hide();
+                        $(block).html(resp).fadeIn(300);
+                        $(block).css('width', '100%');
+                        $(avatar).css('display', 'none');
+                        $(old).each(function(i,el){
+                            console.log(el);
+                            $(el.elem).html(el.html);
+                            $(el.avatar).css('display', 'block');
+                            $(el.elem).css('width', '80%');
+                        });
+                        old = [];
+                        old.push(old_elem);
+                    });
+            });
+
+        });
+
+        $("#cats-open").click(function(){
+            $(".subnavbar_inner").css('display', 'flex');
+        });
+
+        $("#cats-close").click(function(){
+            $(".subnavbar_inner").css('display', 'none');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#dropdown_menu').click(function(event) {
+                event.preventDefault();
+                var dropdownMenu = $('#dropdown_menu');
+                var dropdownContent = $('#dropdown_content');
+                var regArrow = $('#reg_arrow');
+
+                if ($(window).width() >= 768) {
+                    var offset = dropdownMenu.offset();
+                    dropdownContent.css({
+                        top: offset.top + dropdownMenu.outerHeight(),
+                        left: '',
+                        right: $(window).width() - (offset.left + dropdownMenu.outerWidth()),
+                    });
+                } else {
+                    dropdownContent.css({
+                        top: '',
+                        left: '',
+                        right: '',
+                    });
+                }
+
+                dropdownContent.toggle();
+                
+                if (dropdownContent.is(':visible')) {
+                    regArrow.html('&#x1A06;');
+                    dropdownContent.css({
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        maxWidth: '600px',
+                        flexWrap: 'wrap',
+                    });
+                } else {
+                    regArrow.html('&#10095;');
+                }
+            });
+
+            $(document).click(function(event) {
+                if (!$(event.target).closest('#dropdown_menu, #dropdown_content').length) {
+                    $('#dropdown_content').hide();
+                    $('#reg_arrow').html('&#10095;');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

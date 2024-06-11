@@ -1,0 +1,46 @@
+<?php if(isset($_SESSION["alert"])): ?>
+<div class="alert alert-success" role="alert">
+    <?=$_SESSION["alert"]; ?>
+</div>
+<?php unset($_SESSION["alert"]); ?>
+<?php endif; ?>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="white-box">
+
+            <h3 class="box-title">Telegram пости</h3>
+
+            <div class="table-responsive">
+                <table class="table text-nowrap">
+                    <thead>
+                    <tr>
+                        <th class="border-top-0"></th>
+                        <th class="border-top-0">Назва каналу</th>
+                        <th class="border-top-0">Текст</th>
+                        <th class="border-top-0">Дата створення</th>
+                        <th class="border-top-0">Керування</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($posts["subset"] as $post): ?>
+
+                        <td><img style="width: 100px;border-radius: 55px;" src="<?=$post["channel"]["image"];?>"></td>
+                        <td><?=$post["channel"]["name"];?></td>
+                        <td><?=$post["full_text"];?></td>
+                        <td><?=$post["created_at"];?></td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a href="/admin/telegram-posts/<?=$post["id"];?>/edit"><button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Редагувати</button></a>&nbsp;
+                                <a onclick="return confirm('Ви впевнені?')" href="/admin/telegram-posts/<?=$post['id'];?>/delete"><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Видалити</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?=htmlspecialchars_decode($pagebrowser)?>
+        </div>
+    </div>
+</div>

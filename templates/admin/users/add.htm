@@ -1,0 +1,101 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <?php if(isset($_SESSION["err"])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?=$_SESSION["err"];?>
+                        <?php unset($_SESSION["err"]); ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Ім'я</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input
+                                        type="text"
+                                        placeholder="Ім'я"
+                                        class="form-control p-0 border-0"
+                                        name="name"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Прізвище</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input
+                                        type="text"
+                                        placeholder="Прізвище"
+                                        class="form-control p-0 border-0"
+                                        name="surname"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">E-mail</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input
+                                    type="email"
+                                    placeholder="E-mail користувача"
+                                    class="form-control p-0 border-0"
+                                    name="email"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Пароль</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input required
+                                    type="password"
+                                    placeholder="Пароль"
+                                    class="form-control p-0 border-0"
+                                    name="password"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Повтор паролю</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input required
+                                    type="password"
+                                    placeholder="Повтор паролю"
+                                    class="form-control p-0 border-0"
+                                    name="password_repeat"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Роль</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select required name="role" class="form-select" aria-label="Default select example">
+                                        <option value="1">Адміністратор</option>
+                                        <option value="2">Модератор</option>
+                                        <option value="3">Користувач</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Аватар</label>
+                                <small class="bg-light p-1">JPG або PNG</small>
+                                <div class="custom-file mt-2">
+                                    <input type="file" class="form-control-file" id="customFile" name="avatar">
+                                </div>
+                            </div>
+                            <?php if(isset($errors)): ?>
+                            <ul style="color:red;">
+                                <?php foreach($errors as $err): ?>
+                                <li><?=$err;?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>
+                            <div class="form-group mb-4">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success"><i class="fas fa-plus"></i> Додати користувача</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>

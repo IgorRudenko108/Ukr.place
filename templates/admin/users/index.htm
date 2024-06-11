@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-sm-12">
+
+    <?php if(isset($_SESSION["alert"])): ?>
+    <div class="alert alert-success" role="alert">
+        <?=$_SESSION["alert"]; ?>
+    </div>
+    <?php unset($_SESSION["alert"]); ?>
+    <?php endif; ?>
+
+    <?php if(isset($_SESSION["err"])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?=$_SESSION["err"];?>
+                        <?php unset($_SESSION["err"]); ?>
+                    </div>
+                    <?php endif; ?>
+        <div class="white-box">
+        <a href="/admin/users/add"><button style="float:right;" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Додати</button></a>
+        <h3 class="box-title">Пользователи</h3>
+        
+        <div class="table-responsive">
+            <table class="table text-nowrap">
+            <thead>
+                <tr>
+                <th class="border-top-0"></th>
+                <th class="border-top-0">Email</th>
+                <th class="border-top-0">ФИО</th>
+                <th class="border-top-0">Роль</th>
+                <th class="border-top-0">Дата регистрации</th>
+                <th class="border-top-0">Управление</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($users["subset"] as $user): ?>
+                <tr>
+                    <td><img style="width: 100px;border-radius: 50px;height: 100px;object-fit: cover;" src="<?=$user["avatar"];?>"></td>
+                    <td> <a href="mailto:<?=$user["email"];?>"><?=$user["email"];?></a></td>
+                    <td><?=$user["surname"];?> <?=$user["name"];?></td>
+                    <td>
+                        <?php if($user["role"] == 0): ?>
+                            Пользователь
+                        <?php elseif($user["role"] == 1) : ?>
+                            <span style="color:red;">Администратор</span>
+                        <?php endif; ?>
+                    </td>
+                    <td><?=$user["created_at"];?></td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <a href="/admin/user/<?=$user["id"];?>"><button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Редагувати</button></a>
+                            &nbsp;
+                            <a onclick="return confirm('Ви впевнені?')" href="/admin/users/delete/<?=$user["id"];?>"><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Видалити</button></a>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+            </table>
+        </div>
+        <?=htmlspecialchars_decode($pagebrowser)?>
+        </div>
+    </div>
+</div>

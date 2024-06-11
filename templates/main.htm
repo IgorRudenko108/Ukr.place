@@ -1,0 +1,218 @@
+<div class="container">
+    <div class="main-top">
+        <div class="main-top-img">
+            <h1>Головні події</h1>
+            <div class="main-top-img-wrapper">
+                <?php foreach ($news['top'] as $top_key => $item): ?>
+                <?php if ($top_key < 2): ?>
+                <a href="/news/<?=$item['id']?>" class="main-topnews-img-slide">
+                    <div class="main-topnews-img">
+                        <img src="<?=!empty($item['img']) ? $item['img'] : '/assets/img/no-image.jpg'?>">
+                    </div>
+                    <div class="main-topnews-info">
+                        <span class="category-tag"><?=$categories[$item['category_id']]['name']?></span>
+                        <h4><?=$item['title']?></h4>
+                        <span class="main-topnews-info-date"><?=get_pub_date($item['created_at'])?> &bull; <?=$item['source_name']?></span>
+                    </div>
+                </a>
+                <?php endif ?>
+                <?php endforeach ?>
+            </div>
+
+            <!-- trending topic -->
+            <div class="trending-topic">
+                <div class="trending-topic-title">
+                    <h3>Гарячі теми</h3>
+                </div>
+                <div class="trending-topic-wrapper">
+                    <?php foreach($collections as $key => $collection): ?>
+                    <?php if($key < 4): ?>
+                    <a href="/collection/<?=$collection['alias'];?>" class="trending-topic-slide">
+                        <img src="<?=$collection['logo'];?>" alt="">
+                        <h4><?=$collection['name'];?></h4>
+                    </a>
+                    <?php endif ?>
+                    <?php endforeach; ?>
+                    <button id="more-hot">Більше</button>
+                    <div class="popup_hot_more" style="display:none;">
+    
+                    <?php foreach($collections as $key => $collection): ?>
+                    <?php if($key > 3): ?>
+                    <a href="/collection/<?=$collection['alias'];?>"><?=$collection['name'];?></h4></a>
+                    <?php endif ?>
+                    <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <!-- end trending topic -->
+            <div class="select-peace">
+                <img src="/assets/img/peace_img.svg" alt="">
+                <div class="peace-title">
+                    Тільки хороші новини
+                </div>
+                <div class="peace-button">
+                    <label class="switch">
+                        <input type="checkbox" id="justGood" <?=$justgood ? 'checked' : ''; ?>>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="main-top-more">
+            <div class="main-more-news-list">
+                <?php foreach ($news['top'] as $more_key => $item): ?>
+                <?php if ($more_key > 1): ?>
+                <a href="/news/<?=$item['id']?>">
+                    <div class="main-more-news-list-title">
+                        <?=mb_strlen($item['title'], 'UTF-8') <= 80 ? $item['title'] : mb_substr($item['title'], 0, 80, 'UTF-8') . '...'?> <i>&bull; <?=$item['source_name']?></i>
+                    </div>
+                    <span><?=get_pub_date($item['created_at'])?></span>
+                </a>
+                <?php endif ?>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-lastitems">
+        <!-- latest-news -->
+        <div class="main-lastitems-newslist">
+            <h3><img src="/assets/img/lastnews.svg" alt="">Свіжа добірка</h3>
+            <span class="main-lastitems-newslist-subtitle">Останні новини в українських ЗМІ</span>
+            <?php foreach ($news['last'] as $item): ?>
+            <a href="/news/<?=$item['id']?>" data-last-id="<?=$item['id']?>">
+                <div class="main-lastnews-img">
+                    <?php if(empty($item['img'])): ?>
+                    <img src="/assets/img/no-image.jpg" alt="">
+                    <?php else: ?>
+                    <img src="<?=$item['img']?>" alt="">
+                    <?php endif ?>
+                </div>
+                <span><?=date('H:i', strtotime($item['created_at']))?></span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        <?=$item['title']?>
+                        <span class="newslist-cat">&bull; <?=$item['source_name']?></span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            <?=get_pub_date($item['created_at'])?>
+                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            <?=$categories[$item['category_id']]['name']?>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach ?>
+            <button href="#" class="main-lastitems-newslist-more load-more-news"><i class="fas fa-plus"></i>Показати ще</button>
+        </div>
+        <!-- end latest-news -->
+
+        <div class="main-lastitems-sidebar">
+            <div class="main-tgposts">
+                <h3>Telegram монітор</h3>
+                <span class="main-tgposts-subtitle">Свіжі пости відомих українців</span>
+                <?php foreach($tg_posts as $tpost): ?>
+                <div class="tgposts-single">
+                    <div class="tg-avatar">
+                        <img src="<?=$tpost["channel_photo"];?>" alt="">
+                    </div>
+                    <div class="tg-text">
+                        <b><?=$tpost["channel_name"];?></b>
+                        <span><?=mb_strimwidth(html_entity_decode($tpost["text"]), 0, 180, '...')?></span>
+
+                        <button class="loadTgPost" data-id="<?=$tpost["id"];?>">Детальніше</button>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="main-lastitems-horoscop">
+                <div class="horoscop-single">
+                    <div class="horoscop-img">
+                        <img src="/assets/img/zodiac/<?=$myHoroscop["image"];?>.png" alt="">
+                    </div>
+                    <div>
+                        <button class="select-zodic-btn">Обрати знак <img src="/assets/img/arrow_bottom.svg" alt=""></button>
+                        <h4>Гороскоп&#8594;<?=$myHoroscop["name"];?></h4>
+                        <span><?=$myHoroscop["text"];?></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-lastitems-regions">
+                <div class="regions-title">
+                    <div>
+                        <img src="/assets/img/location.png" alt="">
+                        <h3>
+                            <?=$regions[$region]["name"];?> та область
+                            <span>Новини регіону</span>
+                        </h3>
+                    </div>
+                    <a href="#" class="select-region-btn" title="Оберіть свій регіон для показу новин">Змінити</a>
+                </div>
+                <?php foreach ($news['region'] as $item): ?>
+                <a class="regions-single" href="/news/<?=$item['id']?>">
+                    <?php if(!empty($item['img'])): ?>
+                    <img src="<?=$item['img']?>" alt="">
+                    <?php else: ?>
+                    <img src="/assets/img/no-image.jpg" alt="">
+                    <?php endif ?>
+                    <div>
+                        <span class="regions-time"><?=get_pub_date($item['created_at'])?></span>
+                        <b><?=mb_strlen($item['title'], 'UTF-8') <= 80 ? $item['title'] : mb_substr($item['title'], 0, 80, 'UTF-8') . '...'?></b>
+                    </div>
+                </a>
+                <?php endforeach ?>
+                <a href="/region/<?=$region?>" class="go-region-btn"><?=$regions[$region]["name"];?>: всі новини регіону</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="zodiac-modal modal">
+    <form method="POST" action="/set-horoscope">
+        <div class="select-box">
+            <label for="select-box2" class="label select-box1"><span class="label-desc"><?=$horosopeList[$myzodiac-1]["name"];?></span> </label>
+            <select id="select-box2" class="select" name="zodiacID">
+                <?php foreach($horosopeList as $key => $zodiac): ?>
+                    <option value="<?=$key+1;?>" <?php if($key+1 == $myzodiac): ?> selected <?php endif;?> ><?=$zodiac["name"];?></option>
+                <?php endforeach; ?>
+            </select>
+            <button href="#" class="main-lastitems-newslist-more">Зберегти</button>
+        </div>
+    </form>
+    <script>
+        $("#select-box2").on("click" , function() {
+            $(this).parent(".select-box").toggleClass("open");
+        });
+        $("#select-box2").on("change" , function() {
+            var selection = $(this).find("option:selected").text(),
+                labelFor = $(this).attr("id"),
+                label = $("[for='" + labelFor + "']");
+            label.find(".label-desc").html(selection);
+        });
+
+        $('.select-zodic-btn').click(function(event) {
+            event.preventDefault();
+            $("div.zodiac-modal").modal({fadeDuration: 300});
+        });
+
+        $(document).ready(function($) {
+            $('#more-hot').click(function() {
+                $('.popup_hot_more').toggle();
+                return false;
+            });
+
+        $(document).mouseup( function(e){
+            var div = $( ".popup_hot_more" );
+            if ( !div.is(e.target)
+                && div.has(e.target).length === 0 ) {
+                div.hide();
+            }
+        });
+        });
+    </script>
+</div>

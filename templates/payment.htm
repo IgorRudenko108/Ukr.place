@@ -1,0 +1,26 @@
+<div class="product_info_wrap">
+    <h1 style="text-align: center;" class="main_h1">Оплата заказа №<?=$orderID;?></h1>
+    <?php if($statusID == 0): ?>
+    <div style="width: 100%;text-align: center;font-size: 18px;font-family: monospace;">
+        <span>Переведите <span style="color: #0052e3;font-weight: bold;"><?=$price_btc;?></span> BTC (<?=$amount;?> USD) на адрес: <span style="color: #279a12;font-weight: bold;"><?=$btc_wallet;?></span></span>
+        <br><br>
+        <span>Или воспользуйтесь QR кодом ниже</span>
+        <br>
+        <img src="/uploads/orders_qr/<?=$orderID;?>.png" alt="QR код на оплату в $" title="QR код на оплату в $">
+        <br>
+        <span>Для проверки оплаты, обновляйте страницу время от времени в ручном режиме.</span>
+    </div>
+    <?php endif; ?>
+    <?php if($statusID == 1): ?>
+        <div style="width: 100%;text-align: center;font-size: 18px;font-family: monospace;">
+        <span style="color: #168ddf;">Транзакция найдена, ожидаем подтверждений...</span>
+        <br><br>
+        <span>Для проверки оплаты, обновляйте страницу время от времени в ручном режиме.</span>
+    </div>
+    <?php endif; ?>
+    <?php if($statusID == 2): ?>
+        <div style="width: 100%;text-align: center;font-size: 18px;font-family: monospace;">
+        <span>Оплата на сумму <span style="color: #0052e3;font-weight: bold;"><?=$price_btc;?></span> BTC (<?=$amount;?> USD) успешно получена! Ожидайте письмо на почту!</span>
+    </div>
+    <?php endif; ?>
+</div>

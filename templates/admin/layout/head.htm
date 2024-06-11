@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Панель керування </title>
+    <!-- Favicon icon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/admin/plugins/images/favicon.png"
+    />
+    <script src="/assets/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <link href="/assets/css/select2.min.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+    <link href="/assets/admin/css/style.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" rel="stylesheet" />
+    <style>
+      div.ck.ck-content.ck-editor__editable
+      {
+        height: 400px;
+      }
+      ul.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front
+      {
+        z-index: 10000;
+      }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div
+      id="main-wrapper"
+      data-layout="vertical"
+      data-navbarbg="skin5"
+      data-sidebartype="full"
+      data-sidebar-position="absolute"
+      data-header-position="absolute"
+      data-boxed-layout="full"
+    >
+      <!-- ============================================================== -->
+      <!-- Topbar header - style you can find in pages.scss -->
+      <!-- ============================================================== -->
+      <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+          <div class="navbar-header" data-logobg="skin6">
+            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-close ti-menu"></i></a>
+            <!-- ============================================================== -->
+            <!-- Logo -->
+            <!-- ============================================================== -->
+            <a class="navbar-brand" href="/admin">
+              <!-- Logo icon -->
+              <b class="logo-icon">
+                <!-- Dark Logo icon -->
+                <img src="/assets/img/logo.svg" alt="homepage" />
+              </b>
+              <!--End Logo icon -->
+              <!-- Logo text -->
+              <span class="logo-text">
+                <!-- dark Logo text -->
+                <img src="/assets/img/logo.svg" alt="homepage" />
+              </span>
+            </a>
+            <!-- ============================================================== -->
+            <!-- End Logo -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- toggle and nav items -->
+            <!-- ============================================================== -->
+
+          </div>
+          <!-- ============================================================== -->
+          <!-- End Logo -->
+          <!-- ============================================================== -->
+          <div
+            class="navbar-collapse collapse"
+            id="navbarSupportedContent"
+            data-navbarbg="skin5"
+          >
+            <ul class="navbar-nav d-none d-md-block d-lg-none">
+              <li class="nav-item">
+                <a
+                  class="
+                    nav-toggler nav-link
+                    waves-effect waves-light
+                    text-white
+                  "
+                  href="javascript:void(0)"
+                  ><i class="ti-menu ti-close"></i
+                ></a>
+              </li>
+            </ul>
+            <!-- ============================================================== -->
+            <!-- Right side toggle and nav items -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav ms-auto d-flex align-items-center" style="margin-right: 16px;">
+              <!-- ============================================================== -->
+              <!-- Search -->
+              <!-- ============================================================== -->
+
+              <!-- ============================================================== -->
+              <!-- User profile and search -->
+              <!-- ============================================================== -->
+              <li>
+                <a class="profile-pic" href="/admin/profile">
+                  <img
+                    src="<?=$_SESSION['avatar'];?>"
+                    alt="user-img"
+                    width="48"
+                    height="48"
+                    style="object-fit: cover;"
+                    class="img-circle"
+                  /><span class="text-white font-medium"><?=$_SESSION["username"];?> <?=$_SESSION["surname"];?></span></a
+                >
+              </li>
+              <li>
+                <a class="nav-toggler nav-link
+                waves-effect waves-light
+                text-white" href="/admin/logout"><span class="text-white font-medium">Вийти</span></a>
+              </li>
+              <!-- ============================================================== -->
+              <!-- User profile and search -->
+              <!-- ============================================================== -->
+            </ul>
+          </div>
+        </nav>
+      </header>

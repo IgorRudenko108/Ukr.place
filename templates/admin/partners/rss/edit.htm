@@ -1,0 +1,214 @@
+<button id="showHow" type="button" data-toggle="modal" data-target="#howModal" class="btn btn-primary mb-2">Як редагувати RSS?</button>
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+        <div class="col-lg-12 col-xlg-12 col-md-12">
+            <?php if(isset($_SESSION["err"])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?=$_SESSION["err"];?>
+                <?php unset($_SESSION["err"]); ?>
+            </div>
+            <?php endif; ?>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Назва</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder="Назва RSS"
+                                   class="form-control p-0 border-0"
+                                   name="name"
+                                   value="<?=$rss["name"];?>"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">RSS Link</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder="Url"
+                                   class="form-control p-0 border-0"
+                                   name="link"
+                                   id="link"
+                                   value="<?=$rss["link"];?>"
+                            />
+
+                        </div>
+                        <button id="checkRss" type="button" class="btn btn-danger mt-1">Check RSS</button>
+
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Статус</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select name="active" class="form-select">
+                                <option value="0" <?php if($rss["active"] == 0): ?> selected <?php endif;?>>Вимкнена</option>
+                                <option value="1" <?php if($rss["active"] == 1): ?> selected <?php endif;?>>Увімкнена</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4" style="display: none;" id="tag_link">
+                        <label class="col-md-12 p-0">Тег для Link</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select class='form-select'> name="tag_link"/></select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4" style="display: none;" id="tag_title">
+                        <label class="col-md-12 p-0">Тег для Title</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select class='form-select'> name="tag_title"/></select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4" style="display: none;" id="tag_description">
+                        <label class="col-md-12 p-0">Тег для Description</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select class='form-select'> name="tag_description"/></select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4" style="display: none;" id="tag_image">
+                        <label class="col-md-12 p-0">Тег для Image</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select class='form-select'> name="tag_image"/></select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4" style="display: none;" id="tag_full_text">
+                        <label class="col-md-12 p-0">Тег для Full text</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select class='form-select'> name="tag_full_text"/></select>
+                        </div>
+                    </div>
+                    <?php if(isset($errors)): ?>
+                    <ul style="color:red;">
+                        <?php foreach($errors as $err): ?>
+                        <li><?=$err;?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+                    <div class="form-group mb-4">
+                        <div class="col-sm-12">
+                            <button id="getNewsBtn" type="button" disabled class="btn btn-warning"><i class="fas fa-check"></i> Перевірити RSS</button>
+                            <button id="submitBtn" disabled class="btn btn-success"><i class="fas fa-save"></i> Зберегти</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="modal fade bd-example-modal-lg" id="howModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Як додати RSS?</h5>
+                <button type="button" class="btn btn-danger close closeHow" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Інструкція...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary closeHow" data-dismiss="modal">Закрити</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog check_parse_modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Перевірка парсингу</h5>
+                <button type="button" class="btn btn-danger close closeCheck" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Завантаження...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary closeCheck" data-dismiss="modal">Закрити</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+        var list = [
+            'tag_link',
+            'tag_title',
+            'tag_description',
+            'tag_image',
+            'tag_full_text'
+        ];
+
+        $("#showHow").click(function(){
+            $("#howModal").modal('toggle');
+        });
+
+        $(".closeHow").click(function(){
+            $("#howModal").modal('hide');
+        });
+
+        $(".closeCheck").click(function(){
+            $("#checkModal").modal('hide');
+        });
+
+        $("#getNewsBtn").click(function(){
+
+            let link = $("#link").val();
+
+            let tag_link_check = $("#tag_link select").val();
+            let tag_title_check = $("#tag_title select").val();
+            let tag_description_check = $("#tag_description select").val();
+            let tag_image_check = $("#tag_image select").val();
+            let tag_full_text_check = $("#tag_full_text select").val();
+
+            let send = {
+                'link': link,
+                'tag_link': tag_link_check,
+                'tag_title': tag_title_check,
+                'tag_description': tag_description_check,
+                'tag_image': tag_image_check,
+                'tag_full_text': tag_full_text_check
+            }
+
+            $.post( "/admin/partners/rss/parse", send)
+                .done(function( data ) {
+                    $("#checkModal .modal-body").html(data);
+                    $("#checkModal").modal('toggle');
+                });
+        });
+
+        $("#checkRss").click(function(){
+
+            let link = $("#link").val();
+
+            $.post( "/admin/partners/rss/check", { link: link })
+                .done(function( data ) {
+
+                    $(list).each(function(index, item){
+                        let select = "<select name='"+item+"'>";
+                        select += data;
+                        select += "</select>";
+
+                        $("#"+item+" select").html(select);
+                        $("#"+item+" select").attr('name', item);
+                        $("#"+item).show();
+
+                        $("#getNewsBtn").prop('disabled', false);
+                        $("#submitBtn").prop('disabled', false);
+                    });
+
+
+
+                });
+        });
+    });
+</script>

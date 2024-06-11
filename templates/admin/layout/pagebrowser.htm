@@ -1,0 +1,20 @@
+<nav aria-label="Page navigation"></nav>
+    <ul class="pagination justify-content-center">
+        <F3:check if="{{@pg.firstPage}}">
+            <li class="page-item"><a class="page-link" href="{{@BASE.@pg.route.@pg.prefix.@pg.firstPage}}">Перша</a></li>
+        </F3:check>
+        <F3:check if="{{@pg.prevPage}}">
+            <li class="page-item"><a class="page-link" href="{{@BASE.@pg.route.@pg.prefix.@pg.prevPage}}"><i class="glyphicon glyphicon-chevron-left"></i> Попередня</a></li>
+        </F3:check>
+        <F3:repeat group="{{@pg.rangePages}}" value="{{@page}}">
+            <li class="page-item {{@page == @pg.currentPage ? 'active':'' }}"><a class="page-link" href="{{@BASE.@pg.route.@pg.prefix.@page}}">{{@page}}</a></li>
+        </F3:repeat>
+        <F3:check if="{{@pg.nextPage}}">
+            <li class="page-item"><a class="page-link" href="{{@BASE.@pg.route.@pg.prefix.@pg.nextPage}}"><i class="glyphicon glyphicon-chevron-right"></i> Наступна</a></li>
+        </F3:check>
+        <F3:check if="{{@pg.lastPage}}">
+            <li class="page-item"><a class="page-link" href="{{@BASE.@pg.route.@pg.prefix.@pg.lastPage}}">Остання [{{ @pg.lastPage }}]</a></li>
+        </F3:check>
+    </ul>
+</nav>
+<center><br>Сторінка <b>{{ @pg.currentPage }}</b> з <b>{{ @pg.allPages }}</b></center>

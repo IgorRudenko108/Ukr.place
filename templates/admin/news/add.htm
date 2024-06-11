@@ -1,0 +1,106 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+        <div class="col-lg-12 col-xlg-12 col-md-12">
+            <?php if(isset($_SESSION["err"])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?=$_SESSION["err"];?>
+                <?php unset($_SESSION["err"]); ?>
+            </div>
+            <?php endif; ?>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Заголовок<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder=""
+                                   class="form-control p-0 border-0"
+                                   name="title"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Короткий опис<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder=""
+                                   class="form-control p-0 border-0"
+                                   name="description"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Посилання на зображення<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    class="form-control p-0 border-0"
+                                    name="img"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Повний текст новини<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <textarea class="full_text_field" name="full_text" class="form-control p-0 border-0" style="height: 330px;border: 1px solid rgb(236, 240, 244) !important;padding: 12px !important;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Категорія<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <select name="category_id" class="form-select">
+                                <?php foreach($categories as $category): ?>
+                                    <option value="<?=$category["id"];?>"><?=$category["name"];?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Посилання<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    class="form-control p-0 border-0"
+                                    name="source_link"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <div class="col-md-12 border-bottom p-0">
+                            <div class="form-check form-switch">
+                                <input name="is_good" class="form-check-input" type="checkbox" id="flexSwitchGood">
+                                <label class="form-check-label" for="flexSwitchGood">Хороша новина</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php if(isset($errors)): ?>
+                    <ul style="color:red;">
+                        <?php foreach($errors as $err): ?>
+                        <li><?=$err;?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+                    <div class="form-group mb-4">
+                        <div class="col-sm-12">
+                            <button class="btn btn-success"><i class="fas fa-plus"></i> Додати новину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor
+    .create(document.querySelector('.full_text_field'))
+    .catch(error => {
+      console.error(error);
+    });
+</script>

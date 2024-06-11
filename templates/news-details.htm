@@ -1,0 +1,155 @@
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <title><?=$article['title']?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/framework7-icons.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link href="/assets/admin/css/style.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+</head>
+	<a class="main-goback" id="goBack" title="Повернутися назад">
+		<i class="fas fa-arrow-left"></i>
+	</a>
+	<!-- end navbar -->
+	<div class="news-details">
+
+		<div class="news-title">
+			<h1 class="title-post"><?=$article['title']?></h1>
+			<div class="news-info">
+				<span class="news-info-date">
+					<a href="/category/<?=$categories[$article['category_id']]['alias']?>" class="category-tag"><?=strtoupper($categories[$article['category_id']]['name'])?></a>
+					<b>&bull;</b>
+					<?=get_pub_date($article['created_at'])?>
+				</span>
+				<a href="#" class="news-like"><img src="/assets/img/like.png" alt=""><?=$article['likes']?></a>
+			</div>
+		</div>
+
+		<div class="news-content">
+			<?php if(!empty($article['img'])): ?>
+			<img src="<?=$article['img']?>" alt="">
+			<?php endif ?>
+			<div class="mt-4">
+				<button type="button" class="btn btn-success" id="copyText"><i class="fa fa-copy"></i> Копіювати текст</button>
+			</div>
+			<div class="news-desc">
+				<?=html_entity_decode($article['description'])?>
+			</div>
+			<?php if($article['full_text'] != $article['description']): ?>
+			<div class="news-full">
+				<?=html_entity_decode($article['full_text']);?>
+			</div>
+			<?php endif ?>
+		</div>
+
+		<div class="divider-space-content"></div>
+		<div class="news-source">
+			<a href="/news/<?=$article['id']?>/gopartner" class="news-source-logo" target="_blank" rel="nofollow"><img src="<?=$partner['logo']?>"><?=$partner['name']?></a>
+			<a href="/news/<?=$article['id']?>/gopartner" class="to-source" target="_blank" rel="nofollow">
+				<?php if ($article['full_text'] != $article['description']): ?>
+				Читати на джерелі
+				<?php else: ?>
+				Читати повністю
+				<?php endif ?>
+				<i class="fas fa-external-link-alt"></i>
+			</a>
+		</div>
+		<div class="divider-space-content"></div>
+
+		<div class="share-news">
+			<div>
+				<a href="#" class="content bg-facebook" title="Поширити у Facebook"><i class="fab fa-facebook-f" style="margin-right: 5px; font-size: 1.4em"></i> Facebook</a>
+			</div>
+			<div>
+				<a href="#" class="content bg-telegram" title="Поширити у Telegram"><i class="fas fa-paper-plane" style="margin-right: 5px; font-size: 1.4em"></i> Telegram</a>
+			</div>
+			<div>
+				<a href="#" class="content bg-twitter" title="Поширити у Twitter"><i class="fab fa-twitter" style="margin-right: 5px; font-size: 1.4em"></i> Twitter</a>
+			</div>
+		</div>
+		
+	</div>
+	<textarea id="hiddenText" style="display:none;"><?php echo $article['full_text']; ?></textarea>
+	<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050; background: #eee">
+	    <div id="copyToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+	        <div class="toast-body">
+	            Текст скопійовано в буфер.
+	        </div>
+	    </div>
+	</div>
+<script>
+	$("#goBack").click(function() {
+		history.back();
+	});
+</script>	
+<script>
+	$(document).ready(function() {
+	    $('.news-like').on('click', function(e) {
+	        e.preventDefault();
+	        
+	        var articleId = <?php echo json_encode($article['id']); ?>;
+	        
+	        $.ajax({
+	            url: '/article_like',
+	            type: 'POST',
+	            data: { id: articleId },
+	            success: function(response) {
+	                location.reload();
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("Помилка:", status, error);
+	            }
+	        });
+	    });
+	});
+</script>
+
+<script>
+$(document).ready(function(){
+    $('#copyText').click(function(){
+        // Получаем текст из скрытого элемента
+        var text = $('#hiddenText').val();
+        
+        // Преобразование HTML в Telegram формат
+        var tempDiv = $('<div>').html(text);
+        
+        // Функция для преобразования HTML в текст с поддержкой Telegram
+        function convertToTelegramFormat(html) {
+            // Замена тега <p> на два переноса строки
+            html.find('p').replaceWith(function() { return $('<span>').html($(this).html() + '\n\n'); });
+
+            // Удаление всех остальных HTML тегов
+            html.find('*').each(function() {
+                $(this).replaceWith($(this).html());
+            });
+
+            // Возврат текста без HTML тегов
+            return html.text();
+        }
+        
+        var telegramText = convertToTelegramFormat(tempDiv);
+        
+        // Создаем временный элемент для копирования
+        var $temp = $('<textarea>');
+        $('body').append($temp);
+        $temp.val(telegramText).select();
+        document.execCommand('copy');
+        $temp.remove();
+
+        // Показать уведомление
+        var $toast = $('#copyToast');
+        $toast.toast('show');
+    });
+});
+</script>
+<script src="/assets/admin/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

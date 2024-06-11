@@ -1,0 +1,131 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+        <div class="col-lg-12 col-xlg-12 col-md-12">
+            <?php if(isset($_SESSION["err"])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?=$_SESSION["err"];?>
+                <?php unset($_SESSION["err"]); ?>
+            </div>
+            <?php endif; ?>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Посилання на канал<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder=""
+                                   class="form-control p-0 border-0"
+                                   name="account_link"
+                                   id="channelLink"
+                                   value="https://t.me/<?=$channel['account_link'];?>"
+                            />
+                        </div>
+                        <br>
+                        <button type="button" id="loadChannel" class="btn btn-primary">Завантажити</button>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Назва каналу<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input required
+                                   type="text"
+                                   placeholder=""
+                                   class="form-control p-0 border-0"
+                                   name="name"
+                                   id="nameField"
+                                   value="<?=$channel['name'];?>"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Короткий опис<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    class="form-control p-0 border-0"
+                                    name="description"
+                                    id="descriptionFiled"
+                                    value="<?=$channel['description'];?>"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Зображення каналу<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    class="form-control p-0 border-0"
+                                    name="image"
+                                    readonly
+                                    id="imageField"
+                                    value="<?=$channel['image'];?>"
+                            />
+                        </div>
+                        <img id="image" src="<?=$channel['image'];?>" style="margin: 12px auto;">
+                        <p style="display:none;" id="subCount">Кількість підписників: <span>0</span></p>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Посада<span style="color:red">*</span></label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    class="form-control p-0 border-0"
+                                    name="position"
+                                    value="<?=$channel['position'];?>"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <div class="form-check">
+                            <input <?=$channel['active'] ? 'checked' : '' ?> class="form-check-input" type="checkbox" name="active" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Увімкнений
+                            </label>
+                        </div>
+                    </div>
+
+                    <?php if(isset($errors)): ?>
+                    <ul style="color:red;">
+                        <?php foreach($errors as $err): ?>
+                        <li><?=$err;?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+                    <div class="form-group mb-4">
+                        <div class="col-sm-12">
+                            <button id="submit" class="btn btn-success"><i class="fas fa-save"></i> Зберегти</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function(){
+        $("#loadChannel").click(function (){
+            let channelLink = $("#channelLink").val();
+            $.get( "/admin/telegram-channels/loadChennel", { channelLink: channelLink } )
+                .done(function( data ) {
+                    if('error' in data)
+                    {
+                        alert('Error loading data');
+                    } else {
+                        $("#nameField").val(data.title);
+                        $("#descriptionFiled").val(data.description);
+                        $("#imageField").val(data.image);
+                        $("img#image").attr('src', data.image);
+                        $("img#image").show();
+                        $("#subCount span").text(data.subscribers);
+                        $("#subCount").show();
+                        $("#submit").prop('disabled', false);
+                    }
+                });
+        });
+    });
+</script>

@@ -1,0 +1,49 @@
+            <ul class="breadcrumbs">
+                <li><a href="/">Головна</a></li>
+                <li><a href="/order">Оформлення замовлення</a></li>
+            </ul>
+            <div class="category_nav">
+                <div class="basket_top">
+                    <h1 class="category_h1">Оформлення замовлення</h1>
+                    <?php if($_SESSION['count_products'] > 0): ?>
+                    <div class="basket_info">
+                        <div class="basket_info_left">
+                            <span>Обрано: <b><?=$_SESSION['count_products']?> <?=get_noun_plural_form($_SESSION['count_products'], 'товар', 'товари', 'товарів')?> на суму <?=$_SESSION['total_amount']?> грн</b></span>
+                            <?php if(isset($_SESSION['isset_promocode'])): ?>
+                            <span class="have_promocode">
+                                Використано знижку у размірі <?=$_SESSION['promocode_percent']?>% по промокоду <b><?=$_SESSION['isset_promocode']?></b>. Загальна сума знижки склала <b><?=$_SESSION['promocode_amount']?>грн</b>.
+                            </span>
+                            <?php endif ?>
+                            <div class="basket_info_manage">
+                                <a href="/basket">Редагувати кошик</a>
+                                <a href="/unsetall">Очистити кошик</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif ?>
+                </div>
+            </div>
+            <div class="product_info_wrap">
+                <form method="POST" action="/getpromocode" class="promocode_form">
+                    <?php if (isset($_SESSION['isset_promocode'])): ?>
+                        <input type="text" name="promocode" id="promocode" placeholder="Промокод (якщо є)" required value="<?=$_SESSION['isset_promocode']?>">
+                    <?php else: ?>
+                        <input type="text" name="promocode" id="promocode" placeholder="Промокод (якщо є)" required>
+                    <?php endif ?>
+                    <div class="promocode_form_submit">
+                        <button type="submit" class="promocode_form_submit_button"><img src="/assets/img/calculate.png">Перерахувати</button>
+                    </div>
+                </form>
+                <form method="POST" action="/order" class="order_form">
+                    <div class="order_form_left">
+                        <label for="name">Ім'я:</label>
+                        <input type="text" name="name" id="name" required value="<?=(isset($user)) ? $user->name : '';?>">
+                        <label for="email">Телефон:</label>
+                        <input type="tel" name="phone" id="phone" required value="<?=(isset($user)) ? $user->phone : '';?>">
+                        <div class="order_form_submit">
+                            <button type="submit" class="order_form_submit_button"><img src="/assets/img/check.png">Оформлення</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>

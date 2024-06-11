@@ -1,0 +1,265 @@
+<?php if(isset($_SESSION["alert"])): ?>
+<div class="alert alert-success" role="alert">
+    <?=$_SESSION["alert"]; ?>
+</div>
+<?php unset($_SESSION["alert"]); ?>
+<?php endif; ?>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="white-box">
+            <button style="float:right;" type="button" class="btn btn-warning text-dark ms-1" id="duplicateBtn"><i class="fas fa-copy"></i> Дублікат</button>
+            <a href="/admin/news/add"><button style="float:right;" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Додати</button></a>
+            <h3 class="box-title">Новини</h3>
+
+            <div class="table-responsive">
+                <table class="table text-nowrap">
+                    <thead>
+                    <tr>
+                        <th class="border-top-0">Назва</th>
+                        <th class="border-top-0">Категорія</th>
+                        <th class="border-top-0">Дата</th>
+                        <th class="border-top-0">Переглядів</th>
+                        <th class="border-top-0">Джерело</th>
+                        <th class="border-top-0">Керування</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($news["subset"] as $article): ?>
+                    <?php if(in_array($article["id"], $generalInChain)): ?>
+                        <tr style="color:#FF6347;font-weight: bold; background: #FFFACD;">
+                    <?php elseif(in_array($article["id"], $inChain)): ?>
+                        <tr style="color:#FF7F50; background: #FFFFE0;">
+                    <?php else: ?>
+                        <tr>
+                    <?php endif; ?>
+                    
+                        <td><?=$article["title"];?></td>
+                        <td><?=$catList[$article["category_id"]];?></a></td>
+                        <td><?=$article["created_at"];?></a></td>
+                        <td><?=$article["views"];?></a></td>
+                        <td><?=parse_url($article["source_link"], PHP_URL_HOST);?></a></td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a onclick="return confirm('Додати до топ новини?')" href="/admin/news/<?=$article['id'];?>/set_top"><button type="button" class="btn btn-warning text-dark">ТОП</button></a>
+                                &nbsp;
+                                <button type="button" data-id="<?=$article["id"];?>" class="btn btn-warning text-dark addToCollection" title="Додати в підбірку"><i class="fas fa-plus px-1"></i></button>
+                                &nbsp;
+                                <button type="button" data-id="<?=$article["id"];?>" class="btn btn-warning text-dark addToDuplicated" title="Додати в ланцюг дублікатів"><i class="fas fa-copy px-1"></i></button>
+                                &nbsp;
+                                <a href="/admin/news/<?=$article["id"];?>/edit"><button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Редагувати</button></a>
+                                &nbsp;
+                                <a onclick="return confirm('Ви впевнені?')" href="/admin/news/<?=$article['id'];?>/delete"><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Видалити</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?=htmlspecialchars_decode($pagebrowser)?>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="duplicateSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Оберіть схожу новину</h5>
+      </div>
+        <form method="POST" action="/admin/news/duplicate">
+          <div class="modal-body" style="text-align: right;">
+              <div class="input-group mb-3" id="duplicateFieldsGroup">
+                  <input type="hidden" name="id[]" value="">
+                  <input class="form-control" type="text" id="firstArticle" placeholder="Почніть вводити назву новини...">
+              </div>
+              <button disabled type="button" id="addSubArticle" class="btn btn-sm btn-secondary" style="margin-bottom: 15px;"><i class="fas fa-plus"></i></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary closeMdl" data-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-primary">Збергети</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="duplicateAddItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Оберіть ланцюг дублікатів</h5>
+      </div>
+        <form method="POST" action="/admin/news/add-to-duplicated">
+          <div class="modal-body" style="text-align: right;">
+            <input type="hidden" name="articalID" value="" id="originalIDField">
+              <select class="form-select" name="originalID">
+                <?php foreach($duplicateList as $dl): ?>
+                    <option value="<?=$dl["id"];?>"><?=$dl["title"];?></option>
+                <?php endforeach; ?>
+              </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary closeMdl2" data-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-primary">Додати до цього ланцюга</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addToCollectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Встановіть підбірки для цієї новини</h5>
+      </div>
+        <form method="POST" action="/admin/news/selected_collections">
+          <div class="modal-body" style="text-align: right;">
+            <input type="hidden" name="articalID" value="" id="collection_article_id">
+              <select disabled id="select_collections" name="collectionSelect[]" multiple="multiple">
+
+              </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary closeMdl3" data-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    var loadTimer = null;
+
+    var availableTags_IDS = [];
+    var availableTags_Title = [];
+
+    function loadItems(elem)
+    {
+        clearTimeout(loadTimer);
+
+        let searchText = $(elem).val();
+
+        $.get( "/api/news/search", { search: searchText } )
+            .done(function( data ) {
+
+                availableTags_IDS = [];
+                availableTags_Title = [];
+
+            $(elem).autocomplete({
+                source: data
+            });
+
+            $(elem).autocomplete("search", searchText);
+
+
+            $( elem ).autocomplete({
+                select: function( event, ui ) {
+                    event.preventDefault();
+                    $(elem).val(ui.item.label);
+                    $(elem).prev().val(ui.item.value);
+                    $("#addSubArticle").prop('disabled', false);
+                }
+            });
+        });
+    }
+
+    $("#addSubArticle").click(function(){
+
+        $(this).prop('disabled', true);
+
+        let clone = $("#duplicateFieldsGroup").clone();
+        $(clone).removeAttr("id");
+        let a = $(clone).find("input");
+
+        $(a[0]).attr('name', 'id[]');
+        $(a[1]).removeAttr('id');
+        $(a[1]).val('');
+        
+
+        $(a[1]).on("input", function(){
+
+            clearTimeout(loadTimer);
+
+            loadTimer = setTimeout(function(){
+                if($(a[1]).val().length > 2)
+                {
+                    loadItems(a[1]);
+                }
+            }, 1000);
+        });
+        $(clone).appendTo('#duplicateSearch .modal-body');
+        $($(this)).insertAfter($(a[1]).parent());
+    });
+
+    $("#firstArticle").on("input", function(){
+
+        clearTimeout(loadTimer);
+
+        loadTimer = setTimeout(function(){
+            if($("#firstArticle").val().length > 2)
+            {
+                loadItems("#firstArticle");
+            }
+        }, 1000);
+    });
+
+
+    $("#duplicateBtn").click(function(){
+        $("#duplicateSearch").modal("toggle");
+    });
+
+    $(".closeMdl").click(function(){
+        $("#duplicateSearch").modal("hide");
+    });
+
+    /* Add to duplicated */
+
+    $(".addToDuplicated").click(function(){
+        var id = $(this).data('id');
+        $("#originalIDField").val(id);
+        $("#duplicateAddItem").modal('toggle');
+    });
+
+
+    $(".closeMdl2").click(function(){
+        $("#duplicateAddItem").modal("hide");
+    });
+
+
+    $(".addToCollection").click(function(){
+        let id = $(this).data('id');
+        $("#collection_article_id").val(id);
+        $('#select_collections').select2(
+            {
+                width: '100%',
+                placeholder: "Оберіть підбірки",
+                allowClear: true
+            }
+        );
+        $("#addToCollectionModal").modal('toggle');
+        $.get( "/admin/news/news-collections/" + id, {} )
+            .done(function( data ) {
+                $('#select_collections').html(data);
+                $("#select_collections").prop('disabled', false);
+            });
+    });
+
+    $(".closeMdl3").click(function(){
+        $("#addToCollectionModal").modal("hide");
+    });
+
+    $('#addToCollectionModal').on('hide.bs.modal', function (e) {
+        $("#select_collections").prop('disabled', true);
+        $("#collection_article_id").val(0);
+        $('#select_collections').html('');
+    })
+
+});
+</script>

@@ -1,0 +1,69 @@
+<?php if(isset($_SESSION["alert"])): ?>
+<div class="alert alert-success" role="alert">
+  <?=$_SESSION["alert"]; ?>
+</div>
+<?php unset($_SESSION["alert"]); ?>
+<?php endif; ?>
+<div class="row">
+    <div class="col-sm-12">
+    
+        <div class="white-box">
+        <a href="/admin/partners/add"><button style="float:right;" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Додати</button></a>
+        <h3 class="box-title">Партнери</h3>
+        
+        <div class="table-responsive">
+            <table class="table text-nowrap">
+            <thead>
+                <tr>
+                <th class="border-top-0"></th>
+                <th class="border-top-0">Назва</th>
+                <th class="border-top-0">Url</th>
+                <th class="border-top-0">Статус</th>
+                <th class="border-top-0">Ціна за клік</th>
+                <th class="border-top-0">Денний ліміт</th>
+                <th class="border-top-0">Місячний ліміт</th>
+                <th class="border-top-0">Баланс</th>
+                <th class="border-top-0">Регіон</th>
+                <th class="border-top-0">Керування</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($partners["subset"] as $partner): ?>
+                <tr>
+                    <td><img src="<?=$partner["logo"];?>" style="width:48px;height:48px;object-fit:cover;"></td>
+                    <td><?=$partner["name"];?></td>
+                    <td><a href="<?=$partner["link"];?>" target="_blank"><?=$partner["link"];?></a></td>
+                    <td>
+                        <?php switch($partner["active"])
+                        {
+                            case 0: echo "<span style='color: #FF6347;'>Не показується</span>"; break;
+                            case 1: echo "<span style='color: #FF8C00;'>Показується</span>"; break;
+                            case 2: echo "<span style='color: #2E8B57;font-weight: bold;'>Показується платно</span>"; break;
+                        }
+                        ?>
+                    </td>
+                    <td><?=$partner["click_price"];?> UAH</td>
+                    <td><?=$partner["day_limit"];?></td>
+                    <td><?=$partner["month_limit"];?></td>
+                    <td><?=$partner["balance"];?> UAH</td>
+                    <td><?=$regions[$partner["region"]]["name"];?></td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <a href="/admin/partners/<?=$partner["id"];?>/rss"><button type="button" class="btn btn-warning text-dark"><i class="fas fa-rss"></i> RSS</button></a>
+                            &nbsp;
+                            <a href="/admin/partners/<?=$partner["id"];?>/edit"><button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Редагувати</button></a>
+                            &nbsp;
+                            <a href="/admin/partners/<?=$partner["id"];?>/stat"><button type="button" class="btn btn-success"><i class="fa fa-calculator"></i> Статистика</button></a>
+                            &nbsp;
+                            <a onclick="return confirm('Ви впевнені?')" href="/admin/partners/<?=$partner["id"];?>/delete"><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Видалити</button></a>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+            </table>
+        </div>
+        <?=htmlspecialchars_decode($pagebrowser)?>
+        </div>
+    </div>
+</div>

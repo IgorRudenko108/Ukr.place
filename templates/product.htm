@@ -1,0 +1,107 @@
+            <ul class="breadcrumbs">
+                <li><a href="/">Головна</a></li>
+                <li><a href="/category">Каталог</a></li>
+                <?php foreach(get_breadcrumbs($categories['cat_by_id'], $current_cat_id) as $item): ?>
+                <li><a href="/category/<?=$item['alias']?>"><?=$item['name']?></a></li>
+                <?php endforeach ?>
+                <li><?=$product['title']?></li>
+            </ul>
+            <div class="product_info_wrap">
+                <div class="product_info_img">
+                    <?php if ($product['attention'] > 0): ?>
+                    <div class="<?=$attentions[$product['attention']]['class']?>">
+                        <?=$attentions[$product['attention']]['name']?>
+                    </div>
+                    <?php endif ?>
+                    <?php if(!empty($product['img'])): ?>
+                    <img src="<?=$product['img']?>" alt="<?=$product['title']?>">
+                    <?php else: ?>
+                    <img src="/assets/img/no_image.png" alt="Фото відсутнє">
+                    <?php endif ?>
+                </div>
+                <div class="product_info_title">
+                    <div style="width: 100%;">
+                        <h1 class="product_h1"><?=$product['title']?></h1>
+                        <div class="product_info_features">
+                            <?php if($product['having'] == 1): ?>
+                            <div class="product_info_features_having">
+                                <img src="/assets/img/check.svg" alt="">
+                                <span>є в наявності</span>
+                            </div>
+                            <?php else: ?>
+                            <div class="product_info_features_order">
+                                <img src="assets/img/check.svg" alt="">
+                                <span>під замовлення</span>
+                            </div>
+                            <?php endif ?>
+                            <?php if(!empty($product['price_with_discount'])): ?>
+                            <div class="product_info_features_discount">
+                                <img src="/assets/img/discount.svg" alt="">
+                                <span>-<?=$product['price'] - $product['price_with_discount']?>грн</span>
+                            </div>
+                            <?php endif ?>
+                        </div>
+                    </div>
+
+                    <div class="product_info_price_and_buy">
+                        <div class="product_info_price">
+                            <div class="product_info_price_regular">
+                                <?=(!empty($product['price_with_discount'])) ? $product['price_with_discount'] : $product['price'];?> <span>грн</span>
+                            </div>
+                            <?php if(!empty($product['price_with_discount'])): ?>
+                            <div class="product_info_price_old">
+                                    <span><?=$product['price']?></span>
+                            </div>
+                            <?php endif ?>
+                        </div>
+                        <a href="/addtocart?id=<?=$product['id']?>" class="popular_items_item_buy product_info_buy">Купити</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product_info_wrap">
+                <div class="product_info_description">
+                    <h3>Опис</h3>
+                    <?=html_entity_decode($product['description'])?>
+                </div>
+            </div>
+
+
+            <a href="/category/<?=$categories['cat_by_id'][$product['category_id']]['alias']?>" class="popular_link_category"><h3>&rarr; Інші товари в категорії</h3></a>
+            <div class="popular_items_wrap">
+                <?php foreach ($products_related as $item): ?>
+                <div class="popular_items_item">
+                    <div class="popular_items_item_img">
+                        <?php if ($item['attention'] > 0): ?>
+                        <div class="<?=$attentions[$item['attention']]['class']?>">
+                            <?=$attentions[$item['attention']]['name']?>
+                        </div>
+                        <?php endif ?>
+                        <a href="/category/<?=$categories['cat_by_id'][$item['category_id']]['alias']?>/<?=$item['url']?>">
+                            <?php if(!empty($item['img'])): ?>
+                            <img src="<?=$item['img']?>" alt="<?=$item['title']?>">
+                            <?php else: ?>
+                            <img src="/assets/img/no_image.png" alt="Фото відсутнє">
+                            <?php endif ?>
+                        </a>
+                    </div>
+                    <div class="popular_items_item_title">
+                        <a href="/category/<?=$categories['cat_by_id'][$item['category_id']]['alias']?>/<?=$item['url']?>"><h4><?=$item['title']?></h4></a>
+                    </div>
+                    <div class="popular_items_item_prices">
+                        <div class="popular_items_item_prices_regular"><?=(!empty($item['price_with_discount'])) ? $item['price_with_discount'] : $item['price'];?> <span>грн</span></div>
+                        <?php if(!empty($item['price_with_discount'])): ?>
+                        <div class="popular_items_item_prices_stock"><span><?=$item['price']?></span></div>
+                        <?php endif ?>
+                    </div>
+                    <div class="popular_items_item_buy_wrap">
+                        <a href="/addtocart?id=<?=$item['id']?>" class="popular_items_item_buy">Купити</a>
+                    </div>
+                    <div class="popular_items_desc_wrap">
+                        <div class="popular_items_desc_hidden">
+                            <?=mb_substr(html_entity_decode($item['description_seo']), 0, 120);?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach ?>
+            </div>
+            <div class="more_category_link"><a href="/category/<?=$categories['cat_by_id'][$item['category_id']]['alias']?>" title="Всі товари категорії">всі товари</a></div>

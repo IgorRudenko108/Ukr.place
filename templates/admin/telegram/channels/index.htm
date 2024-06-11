@@ -1,0 +1,66 @@
+<?php if(isset($_SESSION["alert"])): ?>
+<div class="alert alert-success" role="alert">
+    <?=$_SESSION["alert"]; ?>
+</div>
+<?php unset($_SESSION["alert"]); ?>
+<?php endif; ?>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="white-box">
+            <a href="/admin/telegram-channels/add"><button style="float:right;" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Додати</button></a>
+            <h3 class="box-title">Telegram канали</h3>
+
+            <div class="table-responsive">
+                <table class="table text-nowrap">
+                    <thead>
+                    <tr>
+                        <th class="border-top-0"></th>
+                        <th class="border-top-0">Назва</th>
+                        <th class="border-top-0">Посилання</th>
+                        <th class="border-top-0">Посада</th>
+                        <th class="border-top-0">Активний</th>
+                        <th class="border-top-0">Дата створення</th>
+                        <th class="border-top-0">Керування</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($channels["subset"] as $channel): ?>
+
+                        <td><img style="width: 100px;border-radius: 55px;" src="<?=$channel["image"];?>"></td>
+                        <td><?=$channel["name"];?></td>
+                        <td><a href="https://t.me/<?=$channel["account_link"];?>" target="_blank"><?=$channel["account_link"];?></a></td>
+                        <td><?=$channel["position"];?></td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input setActive" data-id="<?=$channel['id'];?>" type="checkbox" role="switch" <?=($channel["active"] == 1) ? 'checked' : '';?>>
+                            </div>
+                        </td>
+                        <td><?=$channel["created_at"];?></td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a href="/admin/telegram-posts?source_id=<?=$channel["id"];?>"><button type="button" class="btn btn-warning text-dark"><i class="fab fa-telegram"></i> Пости</button></a>&nbsp;
+                                <a href="/admin/telegram-channels/<?=$channel["id"];?>/edit"><button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Редагувати</button></a>&nbsp;
+                                <a onclick="return confirm('Ви впевнені?')" href="/admin/telegram-channels/<?=$channel['id'];?>/delete"><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Видалити</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?=htmlspecialchars_decode($pagebrowser)?>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function (){
+        $(".setActive").click(function(){
+
+            let checked = $(this).is(":checked") ? 1 : 0;
+            let id = $(this).data('id');
+
+            $.post( "/admin/telegram-channels/set_active", { id: id, checked: checked } );
+        });
+    });
+</script>

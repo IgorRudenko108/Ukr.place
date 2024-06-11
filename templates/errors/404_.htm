@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/assets/css/normalize.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <title>Magaz</title>
+    <meta name="description" content="The best internet shop">
+    <link rel="icon" href="/assets/img/favicon.svg" sizes="any" type="image/svg+xml">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="main_top">
+                <a href="/" class="main_home">
+                    <img src="/assets/img/home.svg" alt="">
+                    <span class="logo_none">magaz</span>
+                </a>
+                <div class="tab_menu_item_hover"></div>
+                <form action="/" class="search">
+                    <input type="search" placeholder="Поиск товара">
+                    <input type="submit" value>
+                </form>
+                <div class="cart">
+                    <a href="#" title="Открыть корзину товаров" class="cart-button" data-link="/cart" type="button"><span>0</span></a>
+                </div>
+            </div>
+            <div class="tab_menu<?=($current_route === '/catalog') ? ' hidden_block' : '';?>">
+                <input id="tab-one" type="checkbox" name="tabs">
+                <label for="tab-one" class="label_active">Каталог<span class="label_none">&nbsp;товаров</span></label>
+                <div class="tab-content">
+                    <ul>
+                        <li class="menu_list_parent"><a href="/">Носки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Цветные</a></li>
+                        <li class="menu_list_sub2"><a href="/">Красные</a></li>
+                        <li class="menu_list_sub2"><a href="/">Синие</a></li>
+                        <li class="menu_list_sub2"><a href="/">Зеленые</a></li>
+                        <li class="menu_list_sub3"><a href="/">Зелено-желтые</a></li>
+                        <li class="menu_list_sub1"><a href="/">Черные</a></li>
+                        <li class="menu_list_sub1"><a href="/">Белые</a></li>
+                        <li class="menu_list_parent"><a href="/">Шорты</a></li>
+                        <li class="menu_list_sub1"><a href="/">Плавки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Бриджи</a></li>
+                        <li class="menu_list_parent"><a href="/">Футболки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Поло</a></li>
+                        <li class="menu_list_sub2"><a href="/">Хлопковые</a></li>
+                        <li class="menu_list_sub2"><a href="/">Шелковые</a></li>
+                        <li class="menu_list_parent"><a href="/">Компъютерные комплектующие</a></li>
+                        <li class="menu_list_sub1"><a href="/">ОЗУ</a></li>
+                        <li class="menu_list_sub1"><a href="/">Процессоры</a></li>
+                        <li class="menu_list_sub1"><a href="/">Материнские платы</a></li>
+                        <li class="menu_list_sub1"><a href="/">Видеокарты</a></li>
+                        <li class="menu_list_sub1"><a href="/">Аксессуары</a></li>
+                        <li class="menu_list_parent"><a href="/">Мобильные телефоны</a></li>
+                        <li class="menu_list_sub1"><a href="/">Apple</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone X</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 11</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 11 Pro</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 12</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 13 Pro Max</a></li>
+                        <li class="menu_list_sub1"><a href="/">Samsung</a></li>
+                        <li class="menu_list_sub1"><a href="/">Lenovo</a></li>
+                        <li class="menu_list_sub1"><a href="/">Xiaomi</a></li>
+                        <li class="menu_list_parent"><a href="/">Звук</a></li>
+                        <li class="menu_list_sub1"><a href="/">Автозвук</a></li>
+                        <li class="menu_list_sub1"><a href="/">Домашние кинотеатры</a></li>
+                        <li class="menu_list_sub1"><a href="/">Наушники</a></li>
+                        <li class="menu_list_sub1"><a href="/">Компьютерная аккустика</a></li>
+                        <li class="menu_list_sub1"><a href="/">Портативные колонки</a></li>
+                        <li class="menu_list_parent"><a href="/">Носки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Цветные</a></li>
+                        <li class="menu_list_sub2"><a href="/">Красные</a></li>
+                        <li class="menu_list_sub2"><a href="/">Синие</a></li>
+                        <li class="menu_list_sub2"><a href="/">Зеленые</a></li>
+                        <li class="menu_list_sub3"><a href="/">Зелено-желтые</a></li>
+                        <li class="menu_list_sub1"><a href="/">Черные</a></li>
+                        <li class="menu_list_sub1"><a href="/">Белые</a></li>
+                        <li class="menu_list_parent"><a href="/">Шорты</a></li>
+                        <li class="menu_list_sub1"><a href="/">Плавки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Бриджи</a></li>
+                        <li class="menu_list_parent"><a href="/">Футболки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Поло</a></li>
+                        <li class="menu_list_sub2"><a href="/">Хлопковые</a></li>
+                        <li class="menu_list_sub2"><a href="/">Шелковые</a></li>
+                        <li class="menu_list_parent"><a href="/">Компъютерные комплектующие</a></li>
+                        <li class="menu_list_sub1"><a href="/">ОЗУ</a></li>
+                        <li class="menu_list_sub1"><a href="/">Процессоры</a></li>
+                        <li class="menu_list_sub1"><a href="/">Материнские платы</a></li>
+                        <li class="menu_list_sub1"><a href="/">Видеокарты</a></li>
+                        <li class="menu_list_sub1"><a href="/">Аксессуары</a></li>
+                        <li class="menu_list_parent"><a href="/">Мобильные телефоны</a></li>
+                        <li class="menu_list_sub1"><a href="/">Apple</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone X</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 11</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 11 Pro</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 12</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 13 Pro Max</a></li>
+                        <li class="menu_list_sub1"><a href="/">Samsung</a></li>
+                        <li class="menu_list_sub1"><a href="/">Lenovo</a></li>
+                        <li class="menu_list_sub1"><a href="/">Xiaomi</a></li>
+                        <li class="menu_list_parent"><a href="/">Звук</a></li>
+                        <li class="menu_list_sub1"><a href="/">Автозвук</a></li>
+                        <li class="menu_list_sub1"><a href="/">Домашние кинотеатры</a></li>
+                        <li class="menu_list_sub1"><a href="/">Наушники</a></li>
+                        <li class="menu_list_sub1"><a href="/">Компьютерная аккустика</a></li>
+                        <li class="menu_list_sub1"><a href="/">Портативные колонки</a></li>
+                        <li class="menu_list_parent"><a href="/">Носки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Цветные</a></li>
+                        <li class="menu_list_sub2"><a href="/">Красные</a></li>
+                        <li class="menu_list_sub2"><a href="/">Синие</a></li>
+                        <li class="menu_list_sub2"><a href="/">Зеленые</a></li>
+                        <li class="menu_list_sub3"><a href="/">Зелено-желтые</a></li>
+                        <li class="menu_list_sub1"><a href="/">Черные</a></li>
+                        <li class="menu_list_sub1"><a href="/">Белые</a></li>
+                        <li class="menu_list_parent"><a href="/">Шорты</a></li>
+                        <li class="menu_list_sub1"><a href="/">Плавки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Бриджи</a></li>
+                        <li class="menu_list_parent"><a href="/">Футболки</a></li>
+                        <li class="menu_list_sub1"><a href="/">Поло</a></li>
+                        <li class="menu_list_sub2"><a href="/">Хлопковые</a></li>
+                        <li class="menu_list_sub2"><a href="/">Шелковые</a></li>
+                        <li class="menu_list_parent"><a href="/">Компъютерные комплектующие</a></li>
+                        <li class="menu_list_sub1"><a href="/">ОЗУ</a></li>
+                        <li class="menu_list_sub1"><a href="/">Процессоры</a></li>
+                        <li class="menu_list_sub1"><a href="/">Материнские платы</a></li>
+                        <li class="menu_list_sub1"><a href="/">Видеокарты</a></li>
+                        <li class="menu_list_sub1"><a href="/">Аксессуары</a></li>
+                        <li class="menu_list_parent"><a href="/">Мобильные телефоны</a></li>
+                        <li class="menu_list_sub1"><a href="/">Apple</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone X</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 11</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 11 Pro</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 12</a></li>
+                        <li class="menu_list_sub2"><a href="/">Iphone 13 Pro Max</a></li>
+                        <li class="menu_list_sub1"><a href="/">Samsung</a></li>
+                        <li class="menu_list_sub1"><a href="/">Lenovo</a></li>
+                        <li class="menu_list_sub1"><a href="/">Xiaomi</a></li>
+                        <li class="menu_list_parent"><a href="/">Звук</a></li>
+                        <li class="menu_list_sub1"><a href="/">Автозвук</a></li>
+                        <li class="menu_list_sub1"><a href="/">Домашние кинотеатры</a></li>
+                        <li class="menu_list_sub1"><a href="/">Наушники</a></li>
+                        <li class="menu_list_sub1"><a href="/">Компьютерная аккустика</a></li>
+                        <li class="menu_list_sub1"><a href="/">Портативные колонки</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container full_height">
+            <h1>Запрошенной страницы не существует</h1>
+            <div class="basket_empty">
+                Похоже вы зашли не туда. Вернитесь на <a href="/">главную страницу</a> или перейдите в <a href="/category">каталог</a> для поиска необходимых товаров.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer_menu">
+                <a href="/">Политика конфиденциальности</a>
+                <a href="/">Программа лояльности</a>
+                <div class="footer_help">
+                    <span>
+                        <img src="/assets/img/phone.png" alt="">
+                        Поддержка
+                    </span>
+                    <a href="tel:+380991230000">+380 99 123 0000</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

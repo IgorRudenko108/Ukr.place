@@ -1,0 +1,79 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <?php if(isset($_SESSION["err"])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?=$_SESSION["err"];?>
+                        <?php unset($_SESSION["err"]); ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Название страницы</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input required
+                                    type="text"
+                                    placeholder="Название товара"
+                                    class="form-control p-0 border-0"
+                                    name="name"
+                                    value="<?=$page["name"];?>"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Alias</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input required
+                                    type="text"
+                                    placeholder="Alias URL"
+                                    class="form-control p-0 border-0"
+                                    name="slug"
+                                    value="<?=$page["alias"];?>"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0"
+                                    >Содержимое страницы</label
+                                >
+                                <div class="col-md-12 border-bottom p-0">
+                                    <textarea height="400" style="background:#f1f1f1;height:400px;"
+                                        rows="5"
+                                        class="form-control p-0 border-0 editor" name="html"
+                                    ><?=$page["html"];?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0"
+                                    >SEO Описание</label
+                                >
+                                <div class="col-md-12 border-bottom p-0">
+                                    <textarea required style="background:#f1f1f1;height:200px;"
+                                        rows="5"
+                                        class="form-control p-0 border-0" name="description_seo"
+                                    ><?=$page["description_seo"];?></textarea>
+                                </div>
+                            </div>
+                            <?php if(isset($errors)): ?>
+                            <ul style="color:red;">
+                                <?php foreach($errors as $err): ?>
+                                <li><?=$err;?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>
+                            <div class="form-group mb-4">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success"><i class="fas fa-save"></i> Сохранить</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    </form>
+    <script src="/assets/admin/js/ckeditor.js"></script>
+    <script>
+    ClassicEditor.create( document.querySelector( '.editor' ));
+    </script>

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="main-lastitems">
+        <!-- latest-news -->
+        <div class="main-archive-lastitems">
+            <h3><img src="/assets/img/lastnews.svg" alt="">Архів</h3>
+            <span class="main-lastitems-newslist-subtitle"><?=$description_seo?></span>
+            <?php foreach ($news['last'] as $item): ?>
+            <a href="/news/<?=$item['id']?>" data-last-id="<?=$item['id']?>">
+                <?php if(empty($item['img'])): ?>
+                <img src="/assets/img/no-image.jpg" alt="">
+                <?php else: ?>
+                <img src="<?=$item['img']?>" alt="">
+                <?php endif ?>
+                <div>
+                    <span><?=date('H:i', strtotime($item['created_at']))?></span>
+                    <?=$item['title']?>
+                    <span class="newslist-cat">&bull; <?=$item['source_name']?></span>
+                </div>
+            </a>
+            <?php endforeach ?>
+            <button <?=(count($news['last']) < 25) ? 'disabled' : ''?> href="#" class="main-lastitems-newslist-more load-more-news"><i class="fas fa-plus"></i>Показати ще</button>
+        </div>
+        <!-- end latest-news -->
+    </div>
+</div>
