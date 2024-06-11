@@ -1,0 +1,11 @@
+{
+    "require": {
+        "bcosca/fatfree-core": "^3.8",
+        "xfra35/f3-access": "^1.2",
+        "ikkez/f3-pagination": "^1.4",
+        "phpmailer/phpmailer": "^6.6",
+        "dg/rss-php": "^1.5",
+        "simplehtmldom/simplehtmldom": "dev-master",
+        "erusev/parsedown": "^1.7"
+    }
+}
