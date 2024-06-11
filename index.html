@@ -1,0 +1,1069 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/assets/img/favicon.ico">
+    <title>Ukr.place - місце збору справжніх українців!</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;900&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/framework7-icons.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <script src="https://code.jquery.com/color/jquery.color-2.2.0.min.js" integrity="sha256-aSe2ZC5QeunlL/w/7PsVKmV+fa0eDbmybn/ptsKHR6I=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="toolbar-bottom-wrapper">
+        <div class="toolbar-bottom container">
+            <a href="/" class="active " title="Головні події в Україні">
+                <img src="/assets/img/menu-home.svg" alt="">
+                <span class="tabbar-label">Головне</span>
+            </a>
+            <a href="/personal/" class=" " title="Персональна стрічка за вашими вподобаннями">
+                <img src="/assets/img/menu-personal.svg" alt="">
+                <span class="tabbar-label">Моя стрічка</span>
+            </a>
+            <a href="#search" class="search-btn  ">
+                <img src="/assets/img/menu-search.svg" alt="" title="Пошук новин">
+                <span class="tabbar-label">Пошук</span>
+            </a>
+            <a href="/archive/" class=" ">
+                <img src="/assets/img/menu-archive.svg" alt="" title="Архів новин, які ви переглянули">
+                <span class="tabbar-label">Архів</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- navbar home -->
+    <div class="navbar">
+        <div class="navbar-top container">
+            <a href="/"><img src="/assets/img/logo2.svg" alt=""></a>
+            <div class="main-navbar-weather">
+                <i class="fas fa-map-marker-alt"></i>
+                <a href="#" class="select-region-btn" title="Обрати інше місто">Київ</a> 
+                <img src="/assets/img/cloudy.svg" title="Невелика хмарність - Зустрівши нас безхмарним ранком, погода змінилася вже у середині дня, й хмари протримаються до вечора. Без опадів.">
+                +24°C
+            </div>
+            <div class="main-navbar-courses">
+                <div>
+                    <img src="/assets/img/dollar.svg">
+                    <span>40.1</span><i class="fas fa-caret-down" style="color: #F08080"></i>
+                </div>
+                <div>
+                    <img src="/assets/img/euro.svg">
+                    <span>43.35</span><i class="fas fa-caret-up" style="color: #2E8B57"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subnavbar">
+        <a href="#" id="cats-open"><img src="/assets/img/burger-menu.svg" alt=""> категорії</a>
+        <div class="subnavbar_inner container">
+            <div id="cats-close"><img src="/assets/img/burger-menu-close.svg" alt=""></div>
+               <a href="/category/auto" class="subnavbar_inner-links">Авто</a>
+               <a href="/category/politika" class="subnavbar_inner-links">Політика</a>
+               <a href="/category/ekonomika" class="subnavbar_inner-links">Економіка</a>
+               <a href="/category/incidenti" class="subnavbar_inner-links">Інциденти</a>
+               <a href="/category/suspil-stvo" class="subnavbar_inner-links">Суспільство</a>
+               <a href="/category/tehnologii" class="">Технології</a>
+               <a href="/category/nauka" class="subnavbar_inner-links">Наука</a>
+               <a href="/category/sport" class="subnavbar_inner-links">Спорт</a>
+               <a href="/category/medicina" class="subnavbar_inner-links">Медицина</a>
+               <a href="/category/sou-biznes" class="subnavbar_inner-links">Шоу-бізнес</a>
+               <a href="/category/u-sviti" class="subnavbar_inner-links">У світі</a>
+               <a href="/category/kurjozi" class="subnavbar_inner-links">Курйози</a>
+               <a href="/category/lifestyle" class="subnavbar_inner-links">Lifestyle</a>
+               <a href="/category/fakenews" class="subnavbar_inner-links">FakeNews</a>
+
+            <div class="dropdown_menu-block">
+               <a href="#" id="dropdown_menu">Регіони 
+                  <!-- <span id="reg_arrow" style="width: 15px, height = 15px">&#10095;</span> -->
+                  <span class="reg-arrow">
+                     <span id="reg_arrow">&#10095;</span>
+                  </span>
+               </a>
+               
+               <div id="dropdown_content" class="dropdown-content">
+                  <a href="/region/1">Київ</a>
+                  <a href="/region/2">Вінниця</a>
+                  <a href="/region/3">Дніпро</a>
+                  <a href="/region/4">Волинь</a>
+                  <a href="/region/5">Донецьк</a>
+                  <a href="/region/6">Житомир</a>
+                  <a href="/region/7">Запоріжжя</a>
+                  <a href="/region/8">Закарпаття</a>
+                  <a href="/region/9">Івано-Франківськ</a>
+                  <a href="/region/10">Кропивницький</a>
+                  <a href="/region/11">Луганськ</a>
+                  <a href="/region/12">Львів</a>
+                  <a href="/region/13">Миколаїв</a>
+                  <a href="/region/14">Одеса</a>
+                  <a href="/region/15">Полтава</a>
+                  <a href="/region/16">Рівне</a>
+                  <a href="/region/17">Суми</a>
+                  <a href="/region/18">Тернопіль</a>
+                  <a href="/region/19">Харків</a>
+                  <a href="/region/20">Херсон</a>
+                  <a href="/region/21">Хмельницький</a>
+                  <a href="/region/22">Черкаси</a>
+                  <a href="/region/23">Чернігів</a>
+                  <a href="/region/24">Чернівці</a>
+                  <a href="/region/25">Крим</a>
+               </div>
+            </div>
+        </div>
+    </div>
+    <!-- end navbar home -->
+
+    <div class="container">
+    <div class="main-top">
+        <div class="main-top-img">
+            <h1>Головні події</h1>
+            <div class="main-top-img-wrapper">
+               <a href="/news/1965" class="main-topnews-img-slide">
+                    <div class="main-topnews-img">
+                        <img src="https://hvylya.net/crops/6759cc/834x0/1/0/2023/02/13/RsoYHMHMe4eo81cKfTR06sL0xk9hVZ6qQTkNi7DI.jpeg">
+                    </div>
+                    <div class="main-topnews-info">
+                        <span class="category-tag">Економіка</span>
+                        <h4>280 гривень за кіло: в Україні встановили нові ціни на бекон та сало</h4>
+                        <span class="main-topnews-info-date">12 годин тому &bull; Хвиля</span>
+                    </div>
+               </a>
+
+               <a href="/news/1964" class="main-topnews-img-slide">
+                    <div class="main-topnews-img">
+                        <img src="https://hvylya.net/crops/36e1be/834x0/1/0/2024/06/10/5jhXqlWVmQAYKBT5o2r5pjWxR9SnY16RWXpa11wf.jpeg">
+                    </div>
+                    <div class="main-topnews-info">
+                        <span class="category-tag">Політика</span>
+                        <h4>У Польщі на вибори до Європарламенту прийшло рекордно мало громадян</h4>
+                        <span class="main-topnews-info-date">12 годин тому &bull; Хвиля</span>
+                    </div>
+               </a>
+
+               <a href="/news/1965" class="main-topnews-img-slide">
+                  <div class="main-topnews-img">
+                      <img src="https://hvylya.net/crops/6759cc/834x0/1/0/2023/02/13/RsoYHMHMe4eo81cKfTR06sL0xk9hVZ6qQTkNi7DI.jpeg">
+                  </div>
+                  <div class="main-topnews-info">
+                      <span class="category-tag">Економіка</span>
+                      <h4>280 гривень за кіло: в Україні встановили нові ціни на бекон та сало</h4>
+                      <span class="main-topnews-info-date">12 годин тому &bull; Хвиля</span>
+                  </div>
+               </a>
+            </div>
+
+            <!-- trending topic -->
+            <div class="trending-topic">
+                <div class="trending-topic-title">
+                    <h3>Гарячі теми</h3>
+                </div>
+                <div class="trending-topic-wrapper">
+                                                            <a href="/collection/vijna" class="trending-topic-slide">
+                        <img src="/assets/img/collections/02bc7a12aa.jpg" alt="">
+                        <h4>Війна</h4>
+                    </a>
+                                                                                <a href="/collection/pensii" class="trending-topic-slide">
+                        <img src="/assets/img/collections/ec196b53b2.jpg" alt="">
+                        <h4>Пенсії</h4>
+                    </a>
+                                                                                <a href="/collection/komunalka" class="trending-topic-slide">
+                        <img src="/assets/img/collections/86af805af7.jpg" alt="">
+                        <h4>Комуналка</h4>
+                    </a>
+                                                                                <a href="/collection/na-rosii" class="trending-topic-slide">
+                        <img src="/assets/img/collections/931dcc9e70.jpg" alt="">
+                        <h4>На росії</h4>
+                    </a>
+
+                    <a href="/collection/pensii" class="trending-topic-slide">
+                     <img src="/assets/img/collections/ec196b53b2.jpg" alt="">
+                     <h4>Пенсії</h4>
+                 </a>
+                                                                                                                                            <button id="more-hot">Більше</button>
+                    <div class="popup_hot_more" style="display:none;">
+    
+                                                                                                                                                                                                                            <a href="/collection/vibori">Вибори</h4></a>
+                                                                                <a href="/collection/viplati-vijs-kovim">Виплати військовим</h4></a>
+                                                            </div>
+                </div>
+            </div>
+            <!-- end trending topic -->
+            <div class="select-peace">
+                <img src="/assets/img/peace_img.svg" alt="">
+                <div class="peace-title">
+                    Тільки хороші новини
+                </div>
+                <div class="peace-button">
+                    <label class="switch">
+                        <input type="checkbox" id="justGood" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="main-top-more">
+            <div class="main-more-news-list">
+               <a href="/news/1963">
+                  <div class="main-more-news-list-title">
+                     Ворог вивів у Чорне море корабель з &quot;Калібрами&quot; <i>&bull; Хвиля</i>
+                  </div>
+                  <span>12 годин тому</span>
+               </a>
+            </div>
+
+            <div class="main-more-news-list">
+               <a href="/news/1963">
+                  <div class="main-more-news-list-title">
+                     Ворог вивів у Чорне море корабель з &quot;Калібрами&quot; <i>&bull; Хвиля</i>
+                  </div>
+                  <span>12 годин тому</span>
+               </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-lastitems">
+        <!-- latest-news -->
+        <div class="main-lastitems-newslist">
+            <h3><img src="/assets/img/lastnews.svg" alt="">Свіжа добірка</h3>
+            <span class="main-lastitems-newslist-subtitle">Останні новини в українських ЗМІ</span>
+                        <a href="/news/1926" data-last-id="1926">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/1/_/1_2b91d1f77d1afb0b38b8591f28614e54_1300x820.jpg" alt="">
+                                    </div>
+                <span>10:14</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Долар подорожчав: новий курс в обмінниках на початку тижня                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Економіка                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1906" data-last-id="1906">
+                <div class="main-lastnews-img">
+                                        <img src="http://s.mind.ua/img/forall/a/202747/55.jpg" alt="">
+                                    </div>
+                <span>10:12</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Інвесткомпанія Robinhood готується придбати найбільшу криптобіржу Європи                        <span class="newslist-cat">&bull; MIND</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Економіка                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1927" data-last-id="1927">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/3/_/3_a79d3905fe0d8ca2ea4ce4f7d0caadbe_1300x820.jpg" alt="">
+                                    </div>
+                <span>10:11</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Спробували промацати оборону. В РНБО відреагували на вкид про &quot;захоплення&quot; Рижівки                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1936" data-last-id="1936">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/234/tsn-d1c7980c2793b1401d3d1b4f99d2baf6/thumbs/550xX/bb/ad/b3dc3e00e055e84ac738c13ec914adbb.jpeg" alt="">
+                                    </div>
+                <span>10:07</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Батько та син створили найшвидший у світі дрон: яку відстань він долає за годину (відео)                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Технології                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1946" data-last-id="1946">
+                <div class="main-lastnews-img">
+                                        <img src="/assets/img/no-image.jpg" alt="">
+                                    </div>
+                <span>10:06</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Україна випробовує свої кориговані авіабомби і готується приймати літаки. Як вони будуть озброєні (ФОТО, ВІДЕО)                        <span class="newslist-cat">&bull; ІНШЕ</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1928" data-last-id="1928">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/_/e/_evlash__gettyimages_1973662105__1__e21606dda3cd4ec26725d883ea67de18_1300x820.jpg" alt="">
+                                    </div>
+                <span>10:05</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        У Повітряних силах ЗСУ пояснили, чим особливий російський винищувач Су-57                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Технології                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1956" data-last-id="1956">
+                <div class="main-lastnews-img">
+                                        <img src="https://hvylya.net/crops/97ff87/834x0/1/0/2024/06/10/MjX4h1zFNasBk3UMuuaKcHBUmYEbgBNngg80Aep0.jpeg" alt="">
+                                    </div>
+                <span>10:05</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Нацгвардія перейде на сухпайки за стандартами НАТО                        <span class="newslist-cat">&bull; Хвиля</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1976" data-last-id="1976">
+                <div class="main-lastnews-img">
+                                        <img src="/assets/img/no-image.jpg" alt="">
+                                    </div>
+                <span>10:02</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Безпілотники ЗСУ атакували російський буксир та баржу в Таганрозької затоці – фото і відео                        <span class="newslist-cat">&bull; Флот 2017</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Інциденти                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1929" data-last-id="1929">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/_/v/_vaga_shudnennya_vafreepik_com__6__92305731a30d8ef5c81e56709e21ae33_1300x820.jpg" alt="">
+                                    </div>
+                <span>10:00</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Чи можна схуднути без тренувань: тренер дав остаточну відповідь                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Lifestyle                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1937" data-last-id="1937">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/831/tsn-68a41e04dcd5a9f31ad7b42986ffb0f3/thumbs/550xX/44/6f/8353113738b6e6f4348bb56c5d756f44.jpeg" alt="">
+                                    </div>
+                <span>10:00</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Загроза для Орбана: в угорського прем’єра з'явився новий політичний конкурент                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1916" data-last-id="1916">
+                <div class="main-lastnews-img">
+                                        <img src="https://i1.poltava.to/uploads/2024/06/10/dtp_1.jpg" alt="">
+                                    </div>
+                <span>09:58</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        У ДТП на трасі Полтава — Красноград травмувалося четверо людей                        <span class="newslist-cat">&bull; Полтавщина</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            8 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Інциденти                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1930" data-last-id="1930">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/6/h/6h7ket5puvci2fs5mc474zsab4_9c969c17f697c348f6af1cb8e7ceedcc_1300x820.jpg" alt="">
+                                    </div>
+                <span>09:54</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        &quot;Бостон&quot; здобув другу перемогу над &quot;Далласом&quot; у фіналі НБА: відео                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Спорт                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1938" data-last-id="1938">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/487/tsn-d1c7980c2793b1401d3d1b4f99d2baf6/thumbs/550xX/2c/6b/12b62fe04601e205996e7bdd79a46b2c.jpeg" alt="">
+                                    </div>
+                <span>09:54</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        16-річна донька Євгена Кошового показала рідкісне фото з бойфрендом і захопила їхньою романтикою                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Шоу-бізнес                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1931" data-last-id="1931">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/d/s/dscf9006_enhanced_id89205_1300x867_2e21bfee63b2fde85283fe867008adfb_1300x820.jpg" alt="">
+                                    </div>
+                <span>09:53</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Чи збільшать 60-денний строк для оновлення військово-облікових даних: що кажуть у СН                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1907" data-last-id="1907">
+                <div class="main-lastnews-img">
+                                        <img src="http://s.mind.ua/img/forall/a/202747/54.jpg" alt="">
+                                    </div>
+                <span>09:50</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Україна не планує впроваджувати електронні повістки для військовозобов'язаних – Веніславський                        <span class="newslist-cat">&bull; MIND</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1966" data-last-id="1966">
+                <div class="main-lastnews-img">
+                                        <img src="/assets/img/no-image.jpg" alt="">
+                                    </div>
+                <span>09:49</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        На Черкащині виготовляють безоплатні протези: роблять усе, щоб люди танцювали – сюжет (Відео)                        <span class="newslist-cat">&bull; 5 канал</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Медицина                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1947" data-last-id="1947">
+                <div class="main-lastnews-img">
+                                        <img src="/assets/img/no-image.jpg" alt="">
+                                    </div>
+                <span>09:47</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Один із міністрів йде з ізраїльського уряду – Нетаньягу просить його повернутись                        <span class="newslist-cat">&bull; ІНШЕ</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Політика                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1940" data-last-id="1940">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/995/tsn-d2873c8d912123241057e3290f2c54af/thumbs/550xX/db/8e/553a18ae7f9d1697849b382d7dcd8edb.jpeg" alt="">
+                                    </div>
+                <span>09:45</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Ви з роду видатних історичних особистостей, якщо ваше прізвище звучить так                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Суспільство                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1941" data-last-id="1941">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/171/tsn-45ddb1c1da8bc78232f746637fde253d/thumbs/550xX/31/cb/05c51b6e383485a8d21c1804c5b8cb31.jpeg" alt="">
+                                    </div>
+                <span>09:44</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Чи справді &quot;кадировці&quot; захопили село на Сумщині: інформація від ЦПД                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Інциденти                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1967" data-last-id="1967">
+                <div class="main-lastnews-img">
+                                        <img src="/assets/img/no-image.jpg" alt="">
+                                    </div>
+                <span>09:43</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        10 танків і 51 артсистема: втрати ворога за 9 червня (Відео)                        <span class="newslist-cat">&bull; 5 канал</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Інциденти                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1932" data-last-id="1932">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/2/_/2_1bd12cd82955655cf6139fcf025269d3_1300x820.jpg" alt="">
+                                    </div>
+                <span>09:42</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        В Україні незабаром ліміти світла встановлюватись по-новому: що зміниться                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Суспільство                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1908" data-last-id="1908">
+                <div class="main-lastnews-img">
+                                        <img src="http://s.mind.ua/img/forall/a/202747/53.jpeg" alt="">
+                                    </div>
+                <span>09:41</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Кількість банкрутств серед фізосіб в Україні за п'ять років зросла удвічі                        <span class="newslist-cat">&bull; MIND</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Економіка                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1943" data-last-id="1943">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/552/tsn-dc382829a98d0f40b34d312a72bcb9b7/thumbs/550xX/dc/7d/3769751a1240ebcc80e4c7322c177ddc.jpeg" alt="">
+                                    </div>
+                <span>09:41</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Енергетики, поліцейські та рятувальники: у Раді розповіли про нюанси у нових правилах бронювання                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Суспільство                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1933" data-last-id="1933">
+                <div class="main-lastnews-img">
+                                        <img src="https://www.rbc.ua/static/img/f/r/freepik_com_45454545_dc4ca8f6898e182c1f500e690f972321_1300x820.jpg" alt="">
+                                    </div>
+                <span>09:40</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Кохання &quot;соло&quot;. Як часто чоловіки та жінки себе задовольняють самостійно                        <span class="newslist-cat">&bull; РБК</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Суспільство                        </div>
+                    </div>
+                </div>
+            </a>
+                        <a href="/news/1944" data-last-id="1944">
+                <div class="main-lastnews-img">
+                                        <img src="https://img.tsn.ua/cached/829/tsn-d1c7980c2793b1401d3d1b4f99d2baf6/thumbs/550xX/b6/35/079f1c87e8a614a151c9a40da2d435b6.jpeg" alt="">
+                                    </div>
+                <span>09:40</span>
+                <div class="newslist-info-text">
+                    <div class="newslist-info-title">
+                        Війни не злякалася: 63-річна італійка вперше народила дитину після поїздки до України на ЕКЗ (фото)                        <span class="newslist-cat">&bull; ТСН</span>
+                    </div>
+                    <div class="newslist-info-mob">
+                        <div class="newslist-info-mob-date">
+                            9 годин тому                        </div>
+                        <div class="newslist-info-mob-separator">&#8226;</div>
+                        <div class="newslist-info-mob-cat">
+                            Суспільство                        </div>
+                    </div>
+                </div>
+            </a>
+                        <button href="#" class="main-lastitems-newslist-more load-more-news"><i class="fas fa-plus"></i>Показати ще</button>
+        </div>
+        <!-- end latest-news -->
+
+        <div class="main-lastitems-sidebar">
+            <div class="main-tgposts">
+                <h3>Telegram монітор</h3>
+                <span class="main-tgposts-subtitle">Свіжі пости відомих українців</span>
+                                <div class="tgposts-single">
+                    <div class="tg-avatar">
+                        <img src="/assets/img/telegram/u_now.jpg" alt="">
+                    </div>
+                    <div class="tg-text">
+                        <b>Украина Сейчас: новости, война, Россия</b>
+                        <span><p>**Что известно о ракетах Storm Shadow, которые Британия, как утверждают СМИ, уже передала Украине.<br>**<br>➡️Storm Shadow - это крылатая ракета большой дальности, которая за...</span>
+
+                        <button class="loadTgPost" data-id="7">Детальніше</button>
+                    </div>
+                </div>
+                                <div class="tgposts-single">
+                    <div class="tg-avatar">
+                        <img src="/assets/img/telegram/u_now.jpg" alt="">
+                    </div>
+                    <div class="tg-text">
+                        <b>Украина Сейчас: новости, война, Россия</b>
+                        <span><p><strong>Показатель перехвата Украиной российских ракет близится к 90-100%, - The Washington Post</strong></p>
+<p>Так, в первые месяцы войны из запущенных ракет Украина сбивал...</span>
+
+                        <button class="loadTgPost" data-id="6">Детальніше</button>
+                    </div>
+                </div>
+                                <div class="tgposts-single">
+                    <div class="tg-avatar">
+                        <img src="/assets/img/telegram/u_now.jpg" alt="">
+                    </div>
+                    <div class="tg-text">
+                        <b>Украина Сейчас: новости, война, Россия</b>
+                        <span><p><strong>Кадры после взрыва в Милане</strong></p>
+<p>Несколько автомобилей охвачены огнём. О пострадавших пока не сообщается.</p></span>
+
+                        <button class="loadTgPost" data-id="2">Детальніше</button>
+                    </div>
+                </div>
+                            </div>
+
+            <div class="main-lastitems-horoscop">
+                <div class="horoscop-single">
+                    <div class="horoscop-img">
+                        <img src="/assets/img/zodiac/aries.png" alt="">
+                    </div>
+                    <div>
+                        <button class="select-zodic-btn">Обрати знак <img src="/assets/img/arrow_bottom.svg" alt=""></button>
+                        <h4>Гороскоп&#8594;Овен</h4>
+                        <span>Сьогодні на Вас чекає успіх у всіх починаннях. Ви навчитеся керувати енергією оточуючих, що допоможе Вам спрямовувати її в правильне русло і досягати необхідного результату. Ви з ентузіазмом братиметеся за будь-яку запропоновану Вам справу і швидко доводитимете її до кінця. Так тримати!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-lastitems-regions">
+                <div class="regions-title">
+                    <div>
+                        <img src="/assets/img/location.png" alt="">
+                        <h3>
+                            Київ та область
+                            <span>Новини регіону</span>
+                        </h3>
+                    </div>
+                    <a href="#" class="select-region-btn" title="Оберіть свій регіон для показу новин">Змінити</a>
+                </div>
+                                <a class="regions-single" href="/news/1939">
+                                        <img src="https://img.tsn.ua/cached/523/tsn-d1c7980c2793b1401d3d1b4f99d2baf6/thumbs/550xX/bf/3d/db17800a6b2991311298d4f768eb3dbf.jpeg" alt="">
+                                        <div>
+                        <span class="regions-time">9 годин тому</span>
+                        <b>У Києві чоловік кинув гранату у вікно квартири: став відомий мотив зловмисника</b>
+                    </div>
+                </a>
+                                <a class="regions-single" href="/news/1942">
+                                        <img src="https://img.tsn.ua/cached/252/tsn-dc382829a98d0f40b34d312a72bcb9b7/thumbs/550xX/cc/41/0273b71a7ddaf913348be1fbbbb341cc.jpeg" alt="">
+                                        <div>
+                        <span class="regions-time">9 годин тому</span>
+                        <b>Коли і чим закінчиться війна в Україні та що буде далі: прогнози експертів та ві...</b>
+                    </div>
+                </a>
+                                <a class="regions-single" href="/news/1935">
+                                        <img src="https://www.rbc.ua/static/img/_/s/_strichka_facebook_com_ua_national_police_d86f3ea25dd0236e29a664e685ab9f56_1300x820.jpg" alt="">
+                                        <div>
+                        <span class="regions-time">9 годин тому</span>
+                        <b>Вибух гранати у Києві: стали відомі мотиви злочину, скільки років загрожує затри...</b>
+                    </div>
+                </a>
+                                <a href="/region/1" class="go-region-btn">Київ: всі новини регіону</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <div class="zodiac-modal modal">
+    <form method="POST" action="/set-horoscope">
+        <div class="select-box">
+            <label for="select-box2" class="label select-box1"><span class="label-desc">Овен</span> </label>
+            <select id="select-box2" class="select" name="zodiacID">
+                                    <option value="1"  selected  >Овен</option>
+                                    <option value="2"  >Телець</option>
+                                    <option value="3"  >Близнюки</option>
+                                    <option value="4"  >Рак</option>
+                                    <option value="5"  >Лев</option>
+                                    <option value="6"  >Діва</option>
+                                    <option value="7"  >Терези</option>
+                                    <option value="8"  >Скорпіон</option>
+                                    <option value="9"  >Стрілець</option>
+                                    <option value="10"  >Козеріг</option>
+                                    <option value="11"  >Водолій</option>
+                                    <option value="12"  >Риби</option>
+                            </select>
+            <button href="#" class="main-lastitems-newslist-more">Зберегти</button>
+        </div>
+    </form>
+    <script>
+        $("#select-box2").on("click" , function() {
+            $(this).parent(".select-box").toggleClass("open");
+        });
+        $("#select-box2").on("change" , function() {
+            var selection = $(this).find("option:selected").text(),
+                labelFor = $(this).attr("id"),
+                label = $("[for='" + labelFor + "']");
+            label.find(".label-desc").html(selection);
+        });
+
+        $('.select-zodic-btn').click(function(event) {
+            event.preventDefault();
+            $("div.zodiac-modal").modal({fadeDuration: 300});
+        });
+
+        $(document).ready(function($) {
+            $('#more-hot').click(function() {
+                $('.popup_hot_more').toggle();
+                return false;
+            });
+
+        $(document).mouseup( function(e){
+            var div = $( ".popup_hot_more" );
+            if ( !div.is(e.target)
+                && div.has(e.target).length === 0 ) {
+                div.hide();
+            }
+        });
+        });
+    </script>
+   </div>
+
+   <div class="region-modal modal">
+      <form method="POST" action="/set-region">
+         <div class="select-box">
+               <label for="select-box1" class="label select-box1"><span class="label-desc">Київ</span> </label>
+               <select id="select-box1" class="select" name="regionID">
+                                          <option value="1"  selected  >Київ</option>
+                                          <option value="2"  >Вінниця</option>
+                                          <option value="3"  >Дніпро</option>
+                                          <option value="4"  >Волинь</option>
+                                          <option value="5"  >Донецьк</option>
+                                          <option value="6"  >Житомир</option>
+                                          <option value="7"  >Запоріжжя</option>
+                                          <option value="8"  >Закарпаття</option>
+                                          <option value="9"  >Івано-Франківськ</option>
+                                          <option value="10"  >Кропивницький</option>
+                                          <option value="11"  >Луганськ</option>
+                                          <option value="12"  >Львів</option>
+                                          <option value="13"  >Миколаїв</option>
+                                          <option value="14"  >Одеса</option>
+                                          <option value="15"  >Полтава</option>
+                                          <option value="16"  >Рівне</option>
+                                          <option value="17"  >Суми</option>
+                                          <option value="18"  >Тернопіль</option>
+                                          <option value="19"  >Харків</option>
+                                          <option value="20"  >Херсон</option>
+                                          <option value="21"  >Хмельницький</option>
+                                          <option value="22"  >Черкаси</option>
+                                          <option value="23"  >Чернігів</option>
+                                          <option value="24"  >Чернівці</option>
+                                          <option value="25"  >Крим</option>
+                                 </select>
+               <button href="#" class="main-lastitems-newslist-more">Зберегти</button>
+         </div>
+      </form>
+      <script>
+         $("#select-box1").on("click" , function() {
+               $(this).parent(".select-box").toggleClass("open");
+         });
+         $("#select-box1").on("change" , function() {
+               var selection = $(this).find("option:selected").text(),
+                  labelFor = $(this).attr("id"),
+                  label = $("[for='" + labelFor + "']");
+               label.find(".label-desc").html(selection);
+         });
+      </script>
+   </div>
+
+   <div class="search-modal modal">
+      <form method="POST" action="/search">
+         <input type="text" name="s_query" placeholder="Введіть, що шукаєте...">
+         <button type="submit" class="main-lastitems-newslist-more">Шукати</button>
+      </form>
+   </div>
+
+   <script>
+      $(document).ready(function() {
+
+         $('.search-btn').click(function(event) {
+               event.preventDefault();
+               this.blur(); // Manually remove focus from clicked link.
+               $("div.search-modal").modal({fadeDuration: 300});
+         });
+
+         $('.select-region-btn').click(function(event) {
+               event.preventDefault();
+               this.blur(); // Manually remove focus from clicked link.
+               $("div.region-modal").modal({fadeDuration: 300});
+         });
+
+         $(".close-select-region").click(function(){
+               $(this).parent().parent().toggleClass('active');
+         });
+
+         const links = $("a");
+         $(links).click(function(e){
+               e.preventDefault();
+               let top = $("#tab-home").scrollTop();
+               sessionStorage.setItem('scroll', top);
+               window.location.href = $(this).attr("href");
+         })
+
+         if (sessionStorage.getItem('scroll')) {
+               let scrollTop = sessionStorage.getItem('scroll');
+               $("#tab-home").scrollTop(scrollTop);
+               sessionStorage.removeItem('scroll');
+         }
+
+         /* Load more button */
+         $("button.load-more-news").click(function(){
+
+               var isCollection = false;
+
+               var defBtn = '<i class="fas fa-plus"></i> Показати ще';
+               $(this).prop('disabled', true);
+               $(this).html('<img src="/assets/img/spinner.svg">&nbsp; Завантажую...');
+               let lastid = $(this).prev().data('last-id');
+               var req = { lastid: lastid }
+               if($(this).hasClass('load-more-collection'))
+               {
+                  isCollection = true;
+                  let collection = $(this).data('collectionid');
+                  var req = { lastid: lastid, collection: collection }
+               }
+               let me = this;
+
+               $.get( "/news/load", req )
+               .done(function( news ) {
+                  $(news).each(function(index, item){
+                     var elem = '<a style="display:none;" href="/news/'+item.id+'" data-last-id="'+item.id+'"><span>'+item.time+'</span><div>'+item.title+'<span class="newslist-cat">'+item.category_name+'</span></div></a>';
+                     if(isCollection)
+                     {
+                           elem = '<a style="display:none;" href="/news/'+item.id+'" data-last-id="'+item.id+'"><img src="'+item.img+'" alt=""><div><span>'+item.time+'</span>'+item.title+'</div></a>';
+                     }
+                     let added = $(elem).insertBefore($(me));
+                     $(added).slideDown(300);
+                  });
+
+                  $(me).html(defBtn);
+                  $(me).prop('disabled', false);
+               });
+         });
+
+         $("#justGood").change(function(){
+               let checked = $(this).is(':checked');
+
+               $.post( "/set-just-good", { justgood: checked } )
+                  .done(function( resp ) {
+                     setTimeout(function(){
+                           window.location.href = '/';
+                     }, 300);
+                  });
+         });
+
+         var old = [];
+
+         $(document).on('click', '.loadTgPost', function() {
+               var postID = $(this).data('id');
+               var block = $(this).parents('div.tg-text');
+               var avatar = $(block).prev();
+
+               let old_elem = {
+                  avatar: avatar,
+                  elem: block,
+                  html: $(block).html()
+               };
+
+               $.get( "/load-telegram-post", { id: postID } )
+                  .done(function( resp ) {
+                     $(block).hide();
+                     $(block).html(resp).fadeIn(300);
+                     $(block).css('width', '100%');
+                     $(avatar).css('display', 'none');
+                     $(old).each(function(i,el){
+                           console.log(el);
+                           $(el.elem).html(el.html);
+                           $(el.avatar).css('display', 'block');
+                           $(el.elem).css('width', '80%');
+                     });
+                     old = [];
+                     old.push(old_elem);
+                  });
+         });
+
+      });
+
+      $("#cats-open").click(function(){
+         // $(".subnavbar_inner").css('display', 'flex');
+         $(".subnavbar_inner").css('display', 'grid');
+      });
+
+      $("#cats-close").click(function(){
+         $(".subnavbar_inner").css('display', 'none');
+      });
+   </script>
+
+   <script>
+      $(document).ready(function() {
+         $('#dropdown_menu').click(function(event) {
+            event.preventDefault();
+            var dropdownMenu = $('#dropdown_menu');
+            var dropdownContent = $('#dropdown_content');
+            var regArrow = $('#reg_arrow');
+
+            if ($(window).width() >= 768) {
+               var offset = dropdownMenu.offset();
+
+               dropdownContent.css({
+                  top: offset.top - 15,
+                  left: 10,
+                  right: 10,
+               });
+            } 
+            
+            else {
+               dropdownContent.css({
+                  top: '',
+                  left: '',
+                  right: '',
+               });
+         }
+
+            dropdownContent.toggle();
+            
+            if (dropdownContent.is(':visible')) {
+                  regArrow.html('&#x1A06;');
+                  dropdownContent.css({
+                     display: 'flex',
+                     justifyContent: 'flex-start',
+                     flexWrap: 'wrap',
+                  });
+            } else {
+               regArrow.html('&#10095;');
+            }
+         });
+
+         $(document).click(function(event) {
+            if (!$(event.target).closest('#dropdown_menu, #dropdown_content').length) {
+               $('#dropdown_content').hide();
+               $('#reg_arrow').html('&#10095;');
+            }
+         });
+      });
+   </script>
+
+   </body>
+</html>
